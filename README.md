@@ -1,4 +1,4 @@
-# CurriculumVitaeApp
+# Curriculum Vitae App
 
 Application represents CurriculumVitaeApp built with TypeScript, Vite, Storybook, and Jest.
 
