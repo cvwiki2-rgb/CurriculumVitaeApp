@@ -1,6 +1,6 @@
-import { themes } from 'storybook/theming'
-import '../src/styles/index.scss'
-import type { Preview } from '@storybook/react-vite'
+import { themes } from 'storybook/theming';
+import '../src/styles/index.scss';
+import type { Preview } from '@storybook/react-vite';
 
 const preview: Preview = {
   parameters: {
@@ -36,6 +36,6 @@ const preview: Preview = {
 
     viewMode: 'story',
   },
-}
+};
 
-export default preview
+export default preview;
