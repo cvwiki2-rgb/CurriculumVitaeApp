@@ -26,15 +26,7 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      'prettier/prettier': [
-        'error',
-        {
-          singleQuote: true,
-          semi: true,
-          trailingComma: 'all',
-          endOfLine: 'lf',
-        },
-      ],
+      'prettier/prettier': ['error'],
       'react/react-in-jsx-scope': 'off',
     },
   },
