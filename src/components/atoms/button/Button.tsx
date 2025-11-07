@@ -15,10 +15,13 @@ export const Button = ({
   disabled = false,
   children,
   className,
+  onClick,
+  ...rest
 }: ButtonProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
     const button = buttonRef.current;
     if (!button) return;
     const ripple = document.createElement('span');
@@ -52,6 +55,7 @@ export const Button = ({
       disabled={disabled}
       type="button"
       onClick={handleClick}
+      {...rest}
     >
       {children}
     </button>
