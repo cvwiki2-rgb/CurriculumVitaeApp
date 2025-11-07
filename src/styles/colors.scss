@@ -1,7 +1,20 @@
 :root {
-  --primary: rgba(255, 255, 255, 1);
-
-  --primary-bg: rgba(68, 68, 68, 1);
-
-  --error: rgba(198, 48, 49, 1);
+  --primary: rgb(255 255 255 / 100%);
+  --primary-bg: rgb(68 68 68 / 100%);
+  --error: rgb(198 48 49 / 100%);
+  --accent: rgb(198 48 49);
+  --accent-opacified: rgb(198 48 49 / 4%);
+  --secondary: rgb(118 118 118);
+  --secondary-opacified: rgb(118 118 118 / 4%);
+  --btn-bg: rgb(138 33 34);
+  --btn-bg-secondary: rgb(82 82 82);
+  --btn-contained-text: rgb(255 255 255 / 100%);
+  --btn-disabled-primary: rgb(0 0 0 / 26%);
+  --btn-disabled-secondary: rgb(0 0 0 / 12%);
+  --btn-ripple-primary-contained: rgb(255 255 255 / 40%);
+  --btn-ripple-primary-outlined: rgb(198 48 49 / 20%);
+  --btn-ripple-primary-text: rgb(198 48 49 / 20%);
+  --btn-ripple-secondary-contained: rgb(255 255 255 / 40%);
+  --btn-ripple-secondary-outlined: rgb(118 118 118 / 20%);
+  --btn-ripple-secondary-text: rgb(118 118 118 / 20%);
 }
