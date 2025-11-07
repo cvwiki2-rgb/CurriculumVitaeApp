@@ -31,6 +31,10 @@
 
 .contained {
   border: none;
+  box-shadow:
+    rgb(0 0 0 / 20%) 0 3px 1px -2px,
+    rgb(0 0 0 / 14%) 0 2px 2px 0,
+    rgb(0 0 0 / 12%) 0 1px 5px 0;
 }
 
 .outlined {
@@ -131,4 +135,40 @@
       background-color: var(--secondary-opacified);
     }
   }
+}
+
+.ripple {
+  pointer-events: none;
+
+  position: absolute;
+  transform: scale(0);
+
+  border-radius: 50%;
+
+  animation: ripple-effect 600ms linear;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.primary.contained .ripple {
+  background-color: var(--btn-ripple-primary-contained);
+}
+
+.primary.outlined .ripple,
+.primary.text .ripple {
+  background-color: var(--btn-ripple-primary-outlined);
+}
+
+.secondary.contained .ripple {
+  background-color: var(--btn-ripple-secondary-contained);
+}
+
+.secondary.outlined .ripple,
+.secondary.text .ripple {
+  background-color: var(--btn-ripple-secondary-outlined);
 }
