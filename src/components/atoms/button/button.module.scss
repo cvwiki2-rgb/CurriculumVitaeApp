@@ -6,20 +6,20 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.75;
-  letter-spacing: 0.02857em;
   text-transform: uppercase;
+  letter-spacing: 0.0286em;
+  cursor: pointer;
+  outline: none;
   border-radius: 40px;
   transition:
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  outline: none;
 
   &:disabled {
-    cursor: not-allowed;
     pointer-events: none;
+    cursor: not-allowed;
   }
 }
 
@@ -57,8 +57,8 @@
   }
 
   &.outlined {
-    border-color: rgba($color: var(--accent), $alpha: 50%);
     color: var(--accent);
+    border-color: rgba($color: var(--accent), $alpha: 50%);
 
     &:hover {
       background-color: var(--accent-opacified);
@@ -66,8 +66,8 @@
     }
 
     &:disabled {
-      border-color: var(--btn-disabled-secondary);
       color: var(--btn-disabled-primary);
+      border-color: var(--btn-disabled-secondary);
     }
   }
 
@@ -102,8 +102,8 @@
   }
 
   &.outlined {
-    border-color: rgba($color: var(--secondary), $alpha: 50%);
     color: var(--secondary);
+    border-color: rgba($color: var(--secondary), $alpha: 50%);
 
     &:hover {
       background-color: var(--secondary-opacified);
@@ -111,8 +111,8 @@
     }
 
     &:disabled {
-      border-color: var(--btn-disabled-secondary);
       color: var(--btn-disabled-primary);
+      border-color: var(--btn-disabled-secondary);
     }
   }
 
@@ -133,10 +133,10 @@
 
 .ripple {
   position: absolute;
-  border-radius: 50%;
-  animation: ripple-effect 600ms linear;
   pointer-events: none;
+  border-radius: 50%;
   transform: scale(0);
+  animation: ripple-effect 600ms linear;
 }
 
 @keyframes ripple-effect {

@@ -2,8 +2,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 ul,
@@ -12,6 +12,6 @@ ol {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
