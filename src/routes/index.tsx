@@ -1,11 +1,13 @@
 import { createBrowserRouter } from 'react-router';
 import { AuthLayout } from './AuthLayout';
-import { LanguageRedirect } from './LanguageRedirect.tsx';
+import { LanguageLayout } from './LanguageLayout';
+import { LanguageRedirect } from './LanguageRedirect';
 import { RootRedirect } from './RootRedirect';
 
 export const router = createBrowserRouter([
   {
     path: '/:lang',
+    Component: LanguageLayout,
     children: [
       {
         index: true,
