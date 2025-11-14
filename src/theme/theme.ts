@@ -13,6 +13,9 @@ const secondary = {
 const lightPalette = {
   primary,
   secondary,
+  text: {
+    secondary: '#2E2E2E',
+  },
   action: {
     hover: alpha('#000', 0.04),
     disabled: alpha('#000', 0.26),
@@ -28,8 +31,7 @@ const darkPalette = {
     paper: '#1e1e1e',
   },
   text: {
-    primary: '#fff',
-    secondary: '#b0b0b0',
+    secondary: '#f5f5f7',
   },
   action: {
     hover: alpha('#fff', 0.08),
