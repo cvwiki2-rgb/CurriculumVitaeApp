@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import GroupIcon from '@mui/icons-material/Group';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
@@ -14,13 +15,15 @@ const menu = [
   { label: 'CVs', icon: <ContactPageOutlinedIcon />, to: '/cvs' },
 ];
 
-export const Sidebar: React.FC = () => {
+export const Sidebar = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
     <Box
       component="aside"
       sx={{
         gridArea: 'navigation',
-        width: '200px',
+        width: collapsed ? '56px' : '200px',
         transition: 'width 0.3s',
         display: 'flex',
         flexDirection: 'column',
@@ -99,8 +102,14 @@ export const Sidebar: React.FC = () => {
             backgroundColor: 'var(--sidebar-collapse-hover-bg)',
           },
         }}
+        onClick={() => setCollapsed((p) => !p)}
       >
-        <KeyboardArrowLeftIcon />
+        <KeyboardArrowLeftIcon
+          sx={{
+            transition: 'transform 200ms',
+            transform: collapsed ? 'rotate(-180deg)' : 'rotate(0deg)',
+          }}
+        />
       </IconButton>
     </Box>
   );
