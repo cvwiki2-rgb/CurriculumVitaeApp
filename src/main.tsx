@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
 import { I18nextProvider } from 'react-i18next';
+import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router/dom';
 import i18n from './app/i18n/i18n.ts';
 import { ThemeProvider } from './context/ThemeContext.tsx';

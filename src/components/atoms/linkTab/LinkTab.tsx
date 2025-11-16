@@ -1,5 +1,5 @@
-import { Tab } from '@mui/material';
 import { NavLink } from 'react-router';
+import { Tab } from '@mui/material';
 
 export interface LinkTabProps {
   label: string;
