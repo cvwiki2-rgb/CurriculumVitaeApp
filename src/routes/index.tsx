@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router';
+import { AppLayout } from './AppLayout';
 import { AuthLayout } from './AuthLayout';
 import { LanguageLayout } from './LanguageLayout';
 import { LanguageRedirect } from './LanguageRedirect';
@@ -17,6 +18,14 @@ export const router = createBrowserRouter([
         path: 'auth',
         Component: AuthLayout,
         children: [{ path: 'login' }, { path: 'signup' }],
+      },
+      {
+        Component: AppLayout,
+        children: [
+          {
+            path: 'users',
+          },
+        ],
       },
     ],
   },
