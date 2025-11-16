@@ -12,6 +12,9 @@ export const AppLayout = () => {
         width: '100%',
         display: ' grid',
         gridTemplate: '"navigation page" 1fr / max-content 1fr',
+        '@media (max-width:768px)': {
+          gridTemplate: '"page" 1fr "navigation" max-content / 1fr',
+        },
       }}
     >
       <Sidebar />

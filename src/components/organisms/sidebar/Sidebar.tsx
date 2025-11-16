@@ -30,6 +30,14 @@ export const Sidebar = () => {
         paddingTop: '44px',
         paddingBottom: '16px',
         overflowX: 'hidden',
+        '@media (max-width:768px)': {
+          width: '100%',
+          height: '56px',
+          display: 'grid',
+          gridTemplateColumns: ' 3fr 1fr',
+          padding: '0px 16px',
+          gap: '14px',
+        },
       }}
     >
       <Box
@@ -39,6 +47,12 @@ export const Sidebar = () => {
           display: 'grid',
           gap: '14px',
           marginBottom: 'auto',
+          '@media (max-width:768px)': {
+            marginTop: 0,
+            height: '100%',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            alignItems: 'center',
+          },
         }}
       >
         {menu.map((item) => (
@@ -62,6 +76,16 @@ export const Sidebar = () => {
             'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
           '&:hover': {
             backgroundColor: 'var(--sidebar-user-hover-bg) !important',
+          },
+          '@media (max-width:768px)': {
+            borderRadius: '200px',
+            height: '40px',
+            minHeight: '40px',
+            alignSelf: 'center',
+            paddingLeft: 0,
+            '&:hover': {
+              backgroundColor: 'transparent !important',
+            },
           },
         }}
       >
@@ -100,6 +124,9 @@ export const Sidebar = () => {
           alignSelf: 'flex-start',
           '&:hover': {
             backgroundColor: 'var(--sidebar-collapse-hover-bg)',
+          },
+          '@media (max-width:768px)': {
+            display: 'none',
           },
         }}
         onClick={() => setCollapsed((p) => !p)}

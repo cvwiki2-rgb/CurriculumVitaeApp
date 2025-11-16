@@ -23,17 +23,23 @@ export const SidebarItem = ({ to, icon, label }: SidebarItemProps) => {
         borderBottomRightRadius: 200,
         textDecoration: 'none',
         overflow: 'hidden',
-
         color: 'var(--sidebar-item-color)',
         transition: 'background 200ms, color 200ms',
-
         '&:hover': {
           backgroundColor: 'var(--sidebar-item-active-bg)',
         },
-
         '&.active': {
           color: 'var(--sidebar-item-active-color)',
           backgroundColor: 'var(--sidebar-item-active-bg)',
+        },
+        '@media (max-width:768px)': {
+          justifyContent: 'center',
+          height: '40px',
+          borderRadius: '200px',
+          padding: '4px 8px',
+          '&:not(:nth-of-type(-n+3))': {
+            display: 'none',
+          },
         },
       }}
     >
@@ -46,6 +52,9 @@ export const SidebarItem = ({ to, icon, label }: SidebarItemProps) => {
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
+          '@media (max-width:768px)': {
+            display: 'none',
+          },
         }}
       >
         {label}
