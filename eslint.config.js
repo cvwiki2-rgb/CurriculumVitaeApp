@@ -44,7 +44,7 @@ export default defineConfig([
           ],
           pathGroups: [
             {
-              pattern: 'react',
+              pattern: 'react*',
               group: 'external',
               position: 'before',
             },
