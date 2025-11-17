@@ -1,5 +1,5 @@
-import { Switch } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Switch } from '@mui/material';
 import { LangSwitcher } from './components/molecules/langSwitcher';
 import { useAppTheme } from './context/ThemeContext';
 

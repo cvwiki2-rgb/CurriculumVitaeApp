@@ -1,6 +1,6 @@
 import { useEffect, useState, type ElementType } from 'react';
-import { styled, Tabs, type SxProps } from '@mui/material';
 import { useLocation } from 'react-router';
+import { styled, Tabs, type SxProps } from '@mui/material';
 import { LinkTab, type LinkTabProps } from '../../atoms/linkTab';
 
 interface AppTabsProps {
