@@ -1,7 +1,7 @@
 import { themes } from 'storybook/theming';
 import '../src/styles/index.scss';
 import type { Preview } from '@storybook/react-vite';
-import '../src/app/i18n';
+import '../src/app/i18n/i18n';
 
 const preview: Preview = {
   parameters: {
