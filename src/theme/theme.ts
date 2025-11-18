@@ -8,7 +8,6 @@ export const lightTheme = createTheme({
   palette: {
     ...baseTheme.palette,
     ...lightPalette,
-    text: { secondary: '#2E2E2E' },
     action: {
       hover: 'rgb(0 0 0 / 4%)',
       disabled: 'rgb(0 0 0 / 26%)',
@@ -32,7 +31,6 @@ export const darkTheme = createTheme({
   palette: {
     ...baseTheme.palette,
     ...darkPalette,
-    text: { secondary: '#f5f5f7' },
     action: {
       hover: 'rgb(255 255 255 / 8%)',
       disabled: 'rgb(255 255 255 / 30%)',
