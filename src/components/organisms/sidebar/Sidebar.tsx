@@ -5,7 +5,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import TranslateIcon from '@mui/icons-material/Translate';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box, IconButton, Avatar, Typography } from '@mui/material';
-import { MyButton } from '../../atoms/myButton';
+import { StyledButton } from '../../atoms/styledButton';
 import { SidebarItem } from '../../molecules/sidebarItem';
 
 const menu = [
@@ -60,7 +60,7 @@ export const Sidebar = () => {
         ))}
       </Box>
 
-      <MyButton
+      <StyledButton
         variant="text"
         sx={{
           display: 'flex',
@@ -112,7 +112,7 @@ export const Sidebar = () => {
         >
           selukdiana@gmail.com
         </Typography>
-      </MyButton>
+      </StyledButton>
 
       <IconButton
         sx={{
