@@ -1,1 +1,1 @@
-export * from './StyledButton_tmp';
+export * from './StyledButton';
