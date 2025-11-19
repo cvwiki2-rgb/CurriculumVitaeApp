@@ -1,1 +1,1 @@
-export * from './RenameMyInput';
+export * from './MyInput';
