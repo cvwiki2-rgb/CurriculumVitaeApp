@@ -4,7 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select, { type SelectProps } from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 
-export const MySelectRoot = styled(Select)<SelectProps>(({ theme }) => ({
+export const StyledSelectRoot = styled(Select)<SelectProps>(({ theme }) => ({
   borderRadius: 0,
   minHeight: 44,
   fontSize: '0.95rem',
@@ -42,18 +42,18 @@ export const MySelectRoot = styled(Select)<SelectProps>(({ theme }) => ({
   },
 }));
 
-type MySelectProps = SelectProps & {
+type StyledSelectProps = SelectProps & {
   label?: string;
   helperText?: string;
 };
 
-export function MySelect({
+export function StyledSelect({
   label,
   helperText,
   error,
   fullWidth,
   ...rest
-}: MySelectProps) {
+}: StyledSelectProps) {
   const id = rest.id ?? (label ? `${label}-select` : undefined);
 
   return (
@@ -65,7 +65,7 @@ export function MySelect({
     >
       {label && <InputLabel id={`${id}-label`}>{label}</InputLabel>}
 
-      <MySelectRoot
+      <StyledSelectRoot
         labelId={label ? `${id}-label` : undefined}
         id={id}
         label={label}
@@ -78,4 +78,4 @@ export function MySelect({
   );
 }
 
-export default MySelect;
+export default StyledSelect;
