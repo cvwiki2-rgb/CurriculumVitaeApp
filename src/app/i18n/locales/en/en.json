@@ -1,5 +1,15 @@
 {
   "Started": "Started ",
   "Log in": "Log in",
-  "Sign up": "Sign up"
+  "Sign up": "Sign up",
+  "Welcome back": "Welcome back",
+  "Hello again": "Hello again! Log in to continue",
+  "Email": "Email",
+  "Password": "Password",
+  "Enter your password": "Enter your password",
+  "Forgot password": "Forgot password",
+  "Register now": "Register now",
+  "Welcome": "Welcome! Sign up to continue",
+  "Create account": "Create account",
+  "I have an account": "I have an account"
 }

@@ -6,11 +6,11 @@ import { AuthActionsContainer } from '../../components/molecules/authActionsCont
 import { PasswordInput } from '../../components/molecules/passwordInput';
 import { AuthPageLayout } from '../../components/organisms/authPageLayout';
 
-export const LoginPage = () => {
+export const SignupPage = () => {
   const { t } = useTranslation();
 
   return (
-    <AuthPageLayout title={t('Welcome back')} subtitle={t('Hello again')}>
+    <AuthPageLayout title={t('Register now')} subtitle={t('Welcome')}>
       <FormControl>
         <StyledInput
           variant="outlined"
@@ -23,15 +23,15 @@ export const LoginPage = () => {
         <PasswordInput
           label={t('Password')}
           placeholder={t('Enter your password')}
-          autoComplete="current-password"
+          autoComplete="new-password"
         />
       </FormControl>
       <AuthActionsContainer>
         <StyledButton color="primary" variant="contained">
-          {t('Log in')}
+          {t('Create account')}
         </StyledButton>
         <StyledButton color="secondary" variant="text">
-          {t('Forgot password')}
+          {t('I have an account')}
         </StyledButton>
       </AuthActionsContainer>
     </AuthPageLayout>

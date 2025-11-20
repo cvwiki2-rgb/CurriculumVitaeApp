@@ -5,6 +5,7 @@ import { LanguageLayout } from './LanguageLayout';
 import { LanguageRedirect } from './LanguageRedirect';
 import { RootRedirect } from './RootRedirect';
 import { LoginPage } from '../pages/loginPage';
+import { SignupPage } from '../pages/signupPage';
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,10 @@ export const router = createBrowserRouter([
       {
         path: 'auth',
         Component: AuthLayout,
-        children: [{ path: 'login', Component: LoginPage }, { path: 'signup' }],
+        children: [
+          { path: 'login', Component: LoginPage },
+          { path: 'signup', Component: SignupPage },
+        ],
       },
       {
         Component: AppLayout,
