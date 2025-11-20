@@ -1,19 +1,13 @@
 import Button, { type ButtonProps } from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 
-export const MyButton = styled(Button)<ButtonProps>(({ theme }) => ({
+export const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
   textTransform: 'uppercase',
-  fontWeight: 500,
   borderRadius: 40,
   minWidth: 220,
   height: 48,
-  fontSize: '0.875rem',
-  lineHeight: 1.75,
-  letterSpacing: '0.0286em',
-  transition: theme.transitions.create(
-    ['background-color', 'box-shadow', 'border-color', 'color'],
-    { duration: theme.transitions.duration.short },
-  ),
+  transition:
+    'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
 
   // === PRIMARY ===
   '&.MuiButton-containedPrimary': {

@@ -1,10 +1,9 @@
-import MyInput, { PasswordInput } from './MyInput';
+import { StyledInput } from './StyledInput';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof MyInput> = {
-  title: 'Components/MyInput',
-  component: MyInput,
-  subcomponents: { PasswordInput },
+const meta: Meta<typeof StyledInput> = {
+  title: 'Components/Inputs/StyledInput',
+  component: StyledInput,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -26,8 +25,7 @@ const meta: Meta<typeof MyInput> = {
 };
 
 export default meta;
-
-type Story = StoryObj<typeof MyInput>;
+type Story = StoryObj<typeof StyledInput>;
 
 export const Default: Story = {
   args: {
@@ -53,26 +51,5 @@ export const Filled: Story = {
     ...Default.args,
     label: 'Filled input',
     variant: 'filled',
-  },
-};
-
-export const Password: StoryObj<typeof PasswordInput> = {
-  render: (args) => <PasswordInput {...args} />,
-  args: {
-    label: 'Password',
-    variant: 'outlined',
-    size: 'medium',
-    helperText: 'Minimum 8 symbols',
-    showToggleAdornment: true,
-  },
-  argTypes: {
-    showToggleAdornment: { control: 'boolean' },
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<PasswordInput label="Password" variant="outlined" helperText="Minimum 8 symbols" />`,
-      },
-    },
   },
 };
