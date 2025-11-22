@@ -3,49 +3,42 @@ import {
   InMemoryCache,
   HttpLink,
   ApolloLink,
+  CombinedGraphQLErrors,
 } from '@apollo/client';
+import { SetContextLink } from '@apollo/client/link/context';
+import { ErrorLink } from '@apollo/client/link/error';
 import { authVar, clearAuth } from './state/auth';
-import type { ExecutionResult, GraphQLError } from 'graphql';
 
 const httpLink = new HttpLink({
   uri: 'https://cv-project-js.inno.ws/api/graphql',
 });
 
-const authLink = new ApolloLink((operation, forward) => {
+const authLink = new SetContextLink((prevContext) => {
   const tokenData = authVar(); // AuthResult | null
   const token =
     tokenData?.access_token ?? localStorage.getItem('access_token') ?? '';
 
-  operation.setContext(({ headers = {} }) => ({
+  return {
     headers: {
-      ...headers,
+      ...prevContext.headers,
       Authorization: token ? `Bearer ${token}` : '',
     },
-  }));
-
-  return forward(operation);
+  };
 });
 
-const errorLink = new ApolloLink((operation, forward) => {
-  return forward(operation).map((response: ExecutionResult) => {
-    const { graphQLErrors, networkError } = operation.getContext();
-
-    if (graphQLErrors) {
-      graphQLErrors.forEach((err: GraphQLError) => {
-        console.error('GraphQL Error:', err.message);
-
-        if (err.message === 'Unauthorized') {
-          clearAuth();
-        }
-      });
-    }
-
-    if (networkError) {
-      console.error('Network Error:', networkError);
-    }
-
-    return response;
-  });
+const errorLink = new ErrorLink(({ error }) => {
+  if (CombinedGraphQLErrors.is(error)) {
+    error.errors.forEach(({ message, locations, path }) => {
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+      );
+      if (message === 'Unauthorized') {
+        clearAuth();
+      }
+    });
+  } else {
+    console.error('[Network error]:', error);
+  }
 });
 
 export const apolloClient = new ApolloClient({
