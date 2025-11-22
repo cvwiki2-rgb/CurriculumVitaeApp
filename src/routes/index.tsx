@@ -3,6 +3,7 @@ import { AppLayout } from './AppLayout';
 import { AuthLayout } from './AuthLayout';
 import { LanguageLayout } from './LanguageLayout';
 import { LanguageRedirect } from './LanguageRedirect';
+import { PrivateRoutes } from './PrivateRoutes';
 import { RootRedirect } from './RootRedirect';
 import { LoginPage } from '../pages/loginPage';
 import { SignupPage } from '../pages/signupPage';
@@ -25,10 +26,15 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        Component: AppLayout,
+        Component: PrivateRoutes,
         children: [
           {
-            path: 'users',
+            Component: AppLayout,
+            children: [
+              {
+                path: 'users',
+              },
+            ],
           },
         ],
       },
