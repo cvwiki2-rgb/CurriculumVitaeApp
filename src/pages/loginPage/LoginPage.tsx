@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import { useLazyQuery } from '@apollo/client/react';
 import { StyledButton } from '../../components/atoms/styledButton';
 import { StyledInput } from '../../components/atoms/styledInput';
@@ -9,6 +10,7 @@ import { PasswordInput } from '../../components/molecules/passwordInput';
 import { AuthPageLayout } from '../../components/organisms/authPageLayout';
 import { LOGIN_QUERY } from '../../graphql/auth/queries';
 import { setAuth } from '../../graphql/state/auth';
+import { useCurrentLang } from '../../hooks/useCurrentLang';
 import type { AuthInput, AuthResult } from 'cv-graphql';
 
 type LoginFormValues = {
@@ -18,6 +20,8 @@ type LoginFormValues = {
 
 export const LoginPage = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const lang = useCurrentLang();
   const {
     handleSubmit,
     control,
@@ -36,10 +40,11 @@ export const LoginPage = () => {
     fetchPolicy: 'no-cache',
   });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => {
-    console.log('Form submitted', data);
+  const onSubmit: SubmitHandler<LoginFormValues> = (formValues) => {
     execLogin({
-      variables: { auth: { email: data.email, password: data.password } },
+      variables: {
+        auth: { email: formValues.email, password: formValues.password },
+      },
     });
   };
 
@@ -48,7 +53,7 @@ export const LoginPage = () => {
 
     if (data.login) {
       setAuth(data?.login);
-      // redirect /users
+      navigate(`/${lang}/users`);
     } else {
       // setSnackbar({ open: true, message: t('Unexpected server response') });
     }
@@ -56,7 +61,6 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (!error) return;
-
     // const msg =
     //   error.graphQLErrors?.[0]?.message ?? error.message ?? t('Login failed');
     // setSnackbar({ open: true, message: msg });
