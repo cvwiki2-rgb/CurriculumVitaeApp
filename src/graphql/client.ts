@@ -4,6 +4,7 @@ import {
   HttpLink,
   ApolloLink,
 } from '@apollo/client';
+import { authVar, clearAuth } from './state/auth';
 import type { ExecutionResult, GraphQLError } from 'graphql';
 
 const httpLink = new HttpLink({
@@ -11,7 +12,9 @@ const httpLink = new HttpLink({
 });
 
 const authLink = new ApolloLink((operation, forward) => {
-  const token = '';
+  const tokenData = authVar(); // AuthResult | null
+  const token =
+    tokenData?.access_token ?? localStorage.getItem('access_token') ?? '';
 
   operation.setContext(({ headers = {} }) => ({
     headers: {
@@ -32,7 +35,7 @@ const errorLink = new ApolloLink((operation, forward) => {
         console.error('GraphQL Error:', err.message);
 
         if (err.message === 'Unauthorized') {
-          //   clearAuth();
+          clearAuth();
         }
       });
     }
