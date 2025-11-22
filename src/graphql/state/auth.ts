@@ -1,9 +1,10 @@
 import { makeVar } from '@apollo/client';
-import type { AuthResult } from 'cv-graphql';
+import type { AuthResult, User } from 'cv-graphql';
 
-export const authVar = makeVar<AuthResult | null>(null);
+export type LocalAuth = Omit<AuthResult, 'user'> & { user?: User };
+export const authVar = makeVar<LocalAuth | null>(null);
 
-export function setAuth(auth: AuthResult) {
+export function setAuth(auth: LocalAuth) {
   try {
     localStorage.setItem('access_token', auth.access_token);
     localStorage.setItem('refresh_token', auth.refresh_token);
@@ -27,10 +28,10 @@ export function initAuthFromStorage() {
   const access = localStorage.getItem('access_token');
   const refresh = localStorage.getItem('refresh_token');
   if (access || refresh) {
-    // authVar({
-    //   access_token: access ?? '',
-    //   refresh_token: refresh ?? '',
-    //   user: undefined as User,
-    // });
+    authVar({
+      access_token: access ?? '',
+      refresh_token: refresh ?? '',
+      user: undefined,
+    });
   }
 }

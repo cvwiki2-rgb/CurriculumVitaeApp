@@ -1,7 +1,13 @@
-import { Navigate, useParams } from 'react-router';
+import { Navigate } from 'react-router';
+import { authVar } from '../graphql/state/auth';
+import { useCurrentLang } from '../hooks/useCurrentLang';
 
 export const RootRedirect = () => {
-  const { lang } = useParams();
+  const lang = useCurrentLang();
+  const auth = authVar();
+  const isAuth = !!auth?.access_token;
 
-  return <Navigate to={`/${lang}/auth/login`} replace />;
+  return (
+    <Navigate to={isAuth ? `/${lang}/users` : `/${lang}/auth/login`} replace />
+  );
 };
