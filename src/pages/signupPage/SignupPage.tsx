@@ -10,28 +10,31 @@ export const SignupPage = () => {
   const { t } = useTranslation();
 
   return (
-    <AuthPageLayout title={t('Register now')} subtitle={t('Welcome')}>
+    <AuthPageLayout
+      title={t('auth.signup.title')}
+      subtitle={t('auth.signup.subtitle')}
+    >
       <FormControl>
         <StyledInput
           variant="outlined"
-          label={t('Email')}
+          label={t('auth.form.email')}
           placeholder="example@mail.com"
           autoComplete="email"
         ></StyledInput>
       </FormControl>
       <FormControl>
         <PasswordInput
-          label={t('Password')}
-          placeholder={t('Enter your password')}
+          label={t('auth.form.password')}
+          placeholder={t('auth.form.enterPassword')}
           autoComplete="new-password"
         />
       </FormControl>
       <AuthActionsContainer>
         <StyledButton color="primary" variant="contained">
-          {t('Create account')}
+          {t('auth.signup.btnPrimary')}
         </StyledButton>
         <StyledButton color="secondary" variant="text">
-          {t('I have an account')}
+          {t('auth.signup.btnSecondary')}
         </StyledButton>
       </AuthActionsContainer>
     </AuthPageLayout>

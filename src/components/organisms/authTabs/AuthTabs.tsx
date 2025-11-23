@@ -7,8 +7,8 @@ export const AuthTabs = () => {
   return (
     <AppTabs
       tabs={[
-        { label: t('Log in'), to: 'login' },
-        { label: t('Sign up'), to: 'signup' },
+        { label: t('auth.tabs.login'), to: 'login' },
+        { label: t('auth.tabs.signup'), to: 'signup' },
       ]}
       centered
     />

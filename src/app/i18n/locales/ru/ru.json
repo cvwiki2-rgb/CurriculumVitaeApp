@@ -1,16 +1,31 @@
 {
   "Started": "Запущено",
-  "Log in": "Вход",
-  "Sign up": "Регистрация",
-  "Welcome back": "С возвращением",
-  "Hello again": "Рады вас видеть! Войдите, чтобы продолжить",
-  "Email": "Почта",
-  "Password": "Пароль",
-  "Enter your password": "Введите пароль",
-  "Forgot password": "Забыли пароль",
-  "Register now": "Зарегистрируйтесь",
-  "Welcome": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
-  "Create account": "Создать аккаунт",
-  "I have an account": "У меня есть аккаунт",
-  "Required field": "Обязательное поле"
+  "auth": {
+    "errors": {
+      "loginFailed": "Ошибка авторизации",
+      "unexpectedResponse": "Неожиданная ошибка сервера"
+    },
+    "tabs": {
+      "login": "Вход",
+      "signup": "Регистрация"
+    },
+    "form": {
+      "email": "Почта",
+      "password": "Пароль",
+      "enterPassword": "Введите пароль",
+      "requiredField": "Обязательное поле"
+    },
+    "login": {
+      "title": "С возвращением",
+      "subtitle": "Рады вас видеть! Войдите, чтобы продолжить",
+      "btnPrimary": "Вход",
+      "btnSecondary": "Забыли пароль"
+    },
+    "signup": {
+      "title": "Зарегистрируйтесь",
+      "subtitle": "Добро пожаловать! Создайте аккаунт, чтобы продолжить",
+      "btnPrimary": "Создать аккаунт",
+      "btnSecondary": "У меня есть аккаунт"
+    }
+  }
 }

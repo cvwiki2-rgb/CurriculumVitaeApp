@@ -61,7 +61,7 @@ export const LoginPage = () => {
       setAuth(data.login);
       navigate(`/${lang}/users`);
     } else {
-      showSnackbar(t('Unexpected server response'), 'error');
+      showSnackbar(t('auth.errors.unexpectedResponse'), 'error');
     }
   }, [data]);
 
@@ -69,26 +69,26 @@ export const LoginPage = () => {
     if (!error) return;
 
     const msg = CombinedGraphQLErrors.is(error)
-      ? error.errors[0]?.message || t('Login failed')
-      : error.message || t('Login failed');
+      ? error.errors[0]?.message || t('auth.errors.loginFailed')
+      : error.message || t('auth.errors.loginFailed');
 
     showSnackbar(msg, 'error');
   }, [error]);
 
   return (
     <AuthPageLayout
-      title={t('Welcome back')}
-      subtitle={t('Hello again')}
+      title={t('auth.login.title')}
+      subtitle={t('auth.login.subtitle')}
       onSubmit={handleSubmit(onSubmit)}
     >
       <Controller
         name="email"
         control={control}
-        rules={{ required: t('Required field') }}
+        rules={{ required: t('auth.form.requiredField') }}
         render={({ field }) => (
           <StyledInput
             {...field}
-            label={t('Email')}
+            label={t('auth.form.email')}
             placeholder="example@mail.com"
             autoComplete="email"
             error={!!errors.email}
@@ -99,12 +99,12 @@ export const LoginPage = () => {
       <Controller
         name="password"
         control={control}
-        rules={{ required: t('Required field') }}
+        rules={{ required: t('auth.form.requiredField') }}
         render={({ field }) => (
           <PasswordInput
             {...field}
-            label={t('Password')}
-            placeholder={t('Enter your password')}
+            label={t('auth.form.password')}
+            placeholder={t('auth.form.enterPassword')}
             autoComplete="current-password"
             error={!!errors.password}
             helperText={errors.password?.message}
@@ -118,7 +118,7 @@ export const LoginPage = () => {
           variant="contained"
           disabled={loading}
         >
-          {t('Log in')}
+          {t('auth.login.btnPrimary')}
         </StyledButton>
         <StyledButton
           color="secondary"
@@ -126,7 +126,7 @@ export const LoginPage = () => {
           disabled={loading}
           onClick={handleForgotPasswordBtnClick}
         >
-          {t('Forgot password')}
+          {t('auth.login.btnSecondary')}
         </StyledButton>
       </AuthActionsContainer>
     </AuthPageLayout>
