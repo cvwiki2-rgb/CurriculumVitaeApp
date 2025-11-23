@@ -50,6 +50,10 @@ export const LoginPage = () => {
     });
   };
 
+  const handleForgotPasswordBtnClick = () => {
+    navigate(`/${lang}/forgot-password`);
+  };
+
   useEffect(() => {
     if (!data) return;
 
@@ -116,7 +120,12 @@ export const LoginPage = () => {
         >
           {t('Log in')}
         </StyledButton>
-        <StyledButton color="secondary" variant="text" disabled={loading}>
+        <StyledButton
+          color="secondary"
+          variant="text"
+          disabled={loading}
+          onClick={handleForgotPasswordBtnClick}
+        >
           {t('Forgot password')}
         </StyledButton>
       </AuthActionsContainer>
