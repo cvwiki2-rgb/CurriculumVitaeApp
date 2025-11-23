@@ -1,5 +1,6 @@
-import { makeVar } from '@apollo/client';
-import type { AuthResult, User } from 'cv-graphql';
+import { ApolloClient, makeVar } from '@apollo/client';
+import { UPDATE_TOKEN } from '../auth/mutations';
+import type { AuthResult, UpdateTokenResult, User } from 'cv-graphql';
 
 export type LocalAuth = Omit<AuthResult, 'user'> & { user?: User };
 export const authVar = makeVar<LocalAuth | null>(null);
@@ -33,5 +34,41 @@ export function initAuthFromStorage() {
       refresh_token: refresh ?? '',
       user: undefined,
     });
+  }
+}
+
+export async function refreshToken(
+  client: ApolloClient,
+): Promise<LocalAuth | null> {
+  const refreshToken = authVar()?.refresh_token;
+
+  if (!refreshToken) {
+    clearAuth();
+    return null;
+  }
+
+  try {
+    const { data } = await client.mutate<{ updateToken: UpdateTokenResult }>({
+      mutation: UPDATE_TOKEN,
+      context: {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      },
+    });
+
+    if (!data?.updateToken) throw new Error('No token returned');
+
+    const updatedAuth: LocalAuth = {
+      access_token: data.updateToken.access_token,
+      refresh_token: data.updateToken.refresh_token,
+    };
+
+    setAuth(updatedAuth);
+    return updatedAuth;
+  } catch (e) {
+    console.warn('Token refresh failed', e);
+    clearAuth();
+    return null;
   }
 }
