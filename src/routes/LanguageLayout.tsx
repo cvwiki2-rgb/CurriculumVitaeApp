@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import i18nConfig from '../app/i18n/i18n';
+import { AppSnackbar } from '../components/ui/appSnackbar';
 import { useCurrentLang } from '../hooks/useCurrentLang';
 
 export const LanguageLayout = () => {
@@ -27,5 +28,10 @@ export const LanguageLayout = () => {
     }
   }, [newLang, i18n]);
 
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <AppSnackbar />
+    </>
+  );
 };

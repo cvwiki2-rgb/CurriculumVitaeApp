@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
+import { CombinedGraphQLErrors } from '@apollo/client';
 import { useLazyQuery } from '@apollo/client/react';
+import { showSnackbar } from '../../app/state/snackbar';
 import { StyledButton } from '../../components/atoms/styledButton';
 import { StyledInput } from '../../components/atoms/styledInput';
 import { AuthActionsContainer } from '../../components/molecules/authActionsContainer';
@@ -52,18 +54,21 @@ export const LoginPage = () => {
     if (!data) return;
 
     if (data.login) {
-      setAuth(data?.login);
+      setAuth(data.login);
       navigate(`/${lang}/users`);
     } else {
-      // setSnackbar({ open: true, message: t('Unexpected server response') });
+      showSnackbar(t('Unexpected server response'), 'error');
     }
   }, [data]);
 
   useEffect(() => {
     if (!error) return;
-    // const msg =
-    //   error.graphQLErrors?.[0]?.message ?? error.message ?? t('Login failed');
-    // setSnackbar({ open: true, message: msg });
+
+    const msg = CombinedGraphQLErrors.is(error)
+      ? error.errors[0]?.message || t('Login failed')
+      : error.message || t('Login failed');
+
+    showSnackbar(msg, 'error');
   }, [error]);
 
   return (
