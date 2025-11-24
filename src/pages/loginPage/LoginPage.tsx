@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { CombinedGraphQLErrors } from '@apollo/client';
 import { useLazyQuery } from '@apollo/client/react';
 import { showSnackbar } from '../../app/state/snackbar';
 import { StyledButton } from '../../components/atoms/styledButton';
@@ -10,6 +9,7 @@ import { AuthActionsContainer } from '../../components/molecules/authActionsCont
 import { PasswordInput } from '../../components/molecules/passwordInput';
 import { AuthPageLayout } from '../../components/organisms/authPageLayout';
 import { LOGIN_QUERY } from '../../graphql/auth/queries';
+import { extractGraphQLMessage } from '../../graphql/errors';
 import { setAuth } from '../../graphql/state/auth';
 import { useLangNavigate } from '../../hooks/useLangNavigate';
 import type { AuthInput, AuthResult } from 'cv-graphql';
@@ -66,10 +66,7 @@ export const LoginPage = () => {
   useEffect(() => {
     if (!error) return;
 
-    const msg = CombinedGraphQLErrors.is(error)
-      ? error.errors[0]?.message || t('auth.errors.loginFailed')
-      : error.message || t('auth.errors.loginFailed');
-
+    const msg = extractGraphQLMessage(error) || t('auth.errors.loginFailed');
     showSnackbar(msg, 'error');
   }, [error]);
 
