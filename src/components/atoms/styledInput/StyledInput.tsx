@@ -27,10 +27,10 @@ export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => {
 
     '& .MuiInputLabel-root': {
       left: 12,
-      top: '50%',
+      top: '24px',
       transform: 'translateY(-50%)',
       pointerEvents: 'none',
-      color: isDark ? 'rgb(255, 255, 255 / 70%)' : 'rgb(0, 0, 0 / 60%)',
+      color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)',
       transition: theme.transitions.create(['transform', 'color', 'top'], {
         duration: theme.transitions.duration.shorter,
       }),
@@ -49,7 +49,9 @@ export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => {
 
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: isDark ? 'rgb(255, 255, 255 / 23%)' : 'rgb(0, 0, 0 /23%)',
+        borderColor: isDark
+          ? 'rgba(255, 255, 255, 0.23)'
+          : 'rgba(0, 0, 0, 0.23)',
 
         borderWidth: 1,
         transition: theme.transitions.create(['border-color', 'border-width'], {
@@ -88,8 +90,35 @@ export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => {
     },
 
     '& .MuiFormHelperText-root': {
-      marginLeft: 0,
-      marginTop: 6,
+      margin: '3px 14px 0px',
+      color: theme.palette.error.main,
+      transition: theme.transitions.create(['opacity', 'color'], {
+        duration: theme.transitions.duration.short,
+        easing: theme.transitions.easing.easeInOut,
+      }),
+      opacity: 1,
+    },
+
+    '& .Mui-error .MuiFormHelperText-root': {
+      opacity: 1,
+    },
+
+    '& input:-webkit-autofill, & input:-webkit-autofill:hover, & input:-webkit-autofill:focus':
+      {
+        WebkitBoxShadow: `0 0 0 100px ${theme.palette.background.default} inset !important`,
+        WebkitTextFillColor: `${theme.palette.text.primary} !important`,
+        caretColor: theme.palette.text.primary,
+        transition: 'background-color 5000s ease-in-out 0s',
+      },
+
+    '& input:-moz-autofill': {
+      boxShadow: `0 0 0 100px ${theme.palette.background.default} inset`,
+      color: theme.palette.text.primary,
+    },
+
+    '& input:-ms-autofill': {
+      boxShadow: `0 0 0 100px ${theme.palette.background.default} inset`,
+      color: theme.palette.text.primary,
     },
   };
 });

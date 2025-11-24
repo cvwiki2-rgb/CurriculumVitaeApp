@@ -1,16 +1,18 @@
-import { type ReactNode } from 'react';
+import { type FormEvent, type ReactNode } from 'react';
 import { Box, Typography } from '@mui/material';
 
 interface AuthPageLayoutProps {
   title: string;
   subtitle: string;
   children: ReactNode;
+  onSubmit?: (event?: FormEvent<HTMLFormElement>) => void;
 }
 
 export const AuthPageLayout = ({
   title,
   subtitle,
   children,
+  onSubmit,
 }: AuthPageLayoutProps) => {
   return (
     <Box
@@ -33,6 +35,7 @@ export const AuthPageLayout = ({
         },
       }}
       component="form"
+      onSubmit={onSubmit}
     >
       <Typography
         variant="h4"

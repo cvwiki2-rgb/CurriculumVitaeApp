@@ -3,6 +3,8 @@ import { AppLayout } from './AppLayout';
 import { AuthLayout } from './AuthLayout';
 import { LanguageLayout } from './LanguageLayout';
 import { LanguageRedirect } from './LanguageRedirect';
+import { PrivateRoutes } from './PrivateRoutes';
+import { PublicRoutes } from './PublicRoutes';
 import { RootRedirect } from './RootRedirect';
 import { LoginPage } from '../pages/loginPage';
 import { SignupPage } from '../pages/signupPage';
@@ -17,18 +19,31 @@ export const router = createBrowserRouter([
         Component: RootRedirect,
       },
       {
-        path: 'auth',
-        Component: AuthLayout,
+        Component: PublicRoutes,
         children: [
-          { path: 'login', Component: LoginPage },
-          { path: 'signup', Component: SignupPage },
+          {
+            path: 'auth',
+            Component: AuthLayout,
+            children: [
+              { path: 'login', Component: LoginPage },
+              { path: 'signup', Component: SignupPage },
+            ],
+          },
+          {
+            path: 'forgot-password',
+          },
         ],
       },
       {
-        Component: AppLayout,
+        Component: PrivateRoutes,
         children: [
           {
-            path: 'users',
+            Component: AppLayout,
+            children: [
+              {
+                path: 'users',
+              },
+            ],
           },
         ],
       },
