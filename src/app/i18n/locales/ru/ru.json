@@ -3,6 +3,7 @@
   "auth": {
     "errors": {
       "loginFailed": "Ошибка авторизации",
+      "signupFailed": "Ошибка регистрации",
       "unexpectedResponse": "Неожиданная ошибка сервера"
     },
     "tabs": {

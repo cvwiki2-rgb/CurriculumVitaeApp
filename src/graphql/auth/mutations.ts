@@ -13,3 +13,23 @@ export const UPDATE_TOKEN = gql`
     }
   }
 `;
+
+export const SIGNUP = gql`
+  mutation Signup($auth: AuthInput!) {
+    signup(auth: $auth) {
+      access_token
+      refresh_token
+      user {
+        id
+        email
+        role
+        is_verified
+        profile {
+          id
+          full_name
+          avatar
+        }
+      }
+    }
+  }
+`;

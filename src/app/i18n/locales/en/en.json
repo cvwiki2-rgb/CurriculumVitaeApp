@@ -3,7 +3,8 @@
   "auth": {
     "errors": {
       "loginFailed": "Login failed",
-      "unexpectedResponse": "Inexpected server response"
+      "signupFailed": "Sign up failed",
+      "unexpectedResponse": "Unexpected server response"
     },
     "tabs": {
       "login": "Log in",
