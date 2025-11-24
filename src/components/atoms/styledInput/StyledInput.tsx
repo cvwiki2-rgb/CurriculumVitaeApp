@@ -102,5 +102,23 @@ export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => {
     '& .Mui-error .MuiFormHelperText-root': {
       opacity: 1,
     },
+
+    '& input:-webkit-autofill, & input:-webkit-autofill:hover, & input:-webkit-autofill:focus':
+      {
+        WebkitBoxShadow: `0 0 0 100px ${theme.palette.background.default} inset !important`,
+        WebkitTextFillColor: `${theme.palette.text.primary} !important`,
+        caretColor: theme.palette.text.primary,
+        transition: 'background-color 5000s ease-in-out 0s',
+      },
+
+    '& input:-moz-autofill': {
+      boxShadow: `0 0 0 100px ${theme.palette.background.default} inset`,
+      color: theme.palette.text.primary,
+    },
+
+    '& input:-ms-autofill': {
+      boxShadow: `0 0 0 100px ${theme.palette.background.default} inset`,
+      color: theme.palette.text.primary,
+    },
   };
 });
