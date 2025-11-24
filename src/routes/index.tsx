@@ -29,6 +29,9 @@ export const router = createBrowserRouter([
               { path: 'signup', Component: SignupPage },
             ],
           },
+          {
+            path: 'forgot-password',
+          },
         ],
       },
       {

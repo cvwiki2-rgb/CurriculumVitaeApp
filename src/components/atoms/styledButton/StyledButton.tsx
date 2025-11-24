@@ -6,6 +6,7 @@ export const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
   borderRadius: 40,
   minWidth: 220,
   height: 48,
+  cursor: 'poiner',
   transition:
     'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
 
