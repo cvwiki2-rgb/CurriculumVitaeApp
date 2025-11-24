@@ -11,7 +11,7 @@ import { ErrorLink } from '@apollo/client/link/error';
 import { authVar, clearAuth, refreshToken } from './state/auth';
 
 const httpLink = new HttpLink({
-  uri: 'https://cv-project-js.inno.ws/api/graphql',
+  uri: import.meta.env.VITE_GRAPHQL_URI,
 });
 
 const authLink = new SetContextLink((prevContext) => {
