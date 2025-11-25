@@ -39,3 +39,9 @@ export const FORGOT_PASSWORD = gql`
     forgotPassword(auth: $auth)
   }
 `;
+
+export const RESET_PASSWORD = gql`
+  mutation ResetPassword($auth: ResetPasswordInput!) {
+    resetPassword(auth: $auth)
+  }
+`;
