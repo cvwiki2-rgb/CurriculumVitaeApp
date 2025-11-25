@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import { useLazyQuery } from '@apollo/client/react';
 import { showSnackbar } from '../../app/state/snackbar';
 import { StyledButton } from '../../components/atoms/styledButton';
@@ -11,7 +12,6 @@ import { AuthPageLayout } from '../../components/organisms/authPageLayout';
 import { LOGIN_QUERY } from '../../graphql/auth/queries';
 import { extractGraphQLMessage } from '../../graphql/errors';
 import { setAuth } from '../../graphql/state/auth';
-import { useLangNavigate } from '../../hooks/useLangNavigate';
 import type { AuthInput, AuthResult } from 'cv-graphql';
 
 type LoginFormValues = {
@@ -21,7 +21,7 @@ type LoginFormValues = {
 
 export const LoginPage = () => {
   const { t } = useTranslation();
-  const navigate = useLangNavigate();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
@@ -49,7 +49,7 @@ export const LoginPage = () => {
   };
 
   const handleForgotPasswordBtnClick = () => {
-    navigate('forgot-password');
+    navigate('/forgot-password');
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export const LoginPage = () => {
 
     if (data.login) {
       setAuth(data.login);
-      navigate('users');
+      navigate('/users');
     } else {
       showSnackbar(t('auth.errors.unexpectedResponse'), 'error');
     }

@@ -6,5 +6,5 @@ export const PublicRoutes = () => {
   const auth = useReactiveVar(authVar);
   const isAuth = !!auth?.access_token;
 
-  return !isAuth ? <Outlet /> : <Navigate to={`users`} />;
+  return !isAuth ? <Outlet /> : <Navigate to="/users" replace />;
 };

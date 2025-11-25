@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import { useMutation } from '@apollo/client/react';
 import { showSnackbar } from '../../app/state/snackbar';
 import { StyledButton } from '../../components/atoms/styledButton';
@@ -11,7 +12,6 @@ import { AuthPageLayout } from '../../components/organisms/authPageLayout';
 import { SIGNUP } from '../../graphql/auth/mutations';
 import { extractGraphQLMessage } from '../../graphql/errors';
 import { setAuth } from '../../graphql/state/auth';
-import { useLangNavigate } from '../../hooks/useLangNavigate';
 import type { AuthInput, AuthResult } from 'cv-graphql';
 
 type SignupFormValues = {
@@ -21,7 +21,7 @@ type SignupFormValues = {
 
 export const SignupPage = () => {
   const { t } = useTranslation();
-  const navigate = useLangNavigate();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
@@ -49,7 +49,7 @@ export const SignupPage = () => {
   };
 
   const handleHaveAccountBtnClick = () => {
-    navigate('auth/login');
+    navigate('/auth/login');
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export const SignupPage = () => {
 
     if (data.signup) {
       setAuth(data.signup);
-      navigate('users');
+      navigate('/users');
     } else {
       showSnackbar(t('auth.errors.unexpectedResponse'), 'error');
     }
