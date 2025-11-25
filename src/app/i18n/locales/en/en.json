@@ -1,7 +1,10 @@
 {
   "Started": "Started ",
   "auth": {
-    "info": { "checkEmail": "Check your email inbox" },
+    "info": {
+      "checkEmail": "Check your email inbox",
+      "passwordReset": "Password has been reset"
+    },
     "errors": {
       "loginFailed": "Login failed",
       "signupFailed": "Sign up failed",
@@ -16,7 +19,8 @@
       "email": "Email",
       "password": "Password",
       "enterPassword": "Enter your password",
-      "requiredField": "Required field"
+      "requiredField": "Required field",
+      "newPassword": "New password"
     },
     "login": {
       "title": "Welcome back",
@@ -35,6 +39,12 @@
       "subtitle": "We will sent you an email with further instructions",
       "btnPrimary": "Reset password",
       "btnSecondary": "Cancel"
+    },
+    "resetPassword": {
+      "title": "Set a new password",
+      "subtitle": "Almost done! Now create a new password",
+      "btnPrimary": "Submit",
+      "btnSecondary": "Back to log in"
     }
   }
 }
