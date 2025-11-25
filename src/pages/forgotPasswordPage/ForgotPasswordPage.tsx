@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import { useMutation } from '@apollo/client/react';
 import { showSnackbar } from '../../app/state/snackbar';
 import { StyledButton } from '../../components/atoms/styledButton';
@@ -9,7 +10,6 @@ import { AuthActionsContainer } from '../../components/molecules/authActionsCont
 import { AuthPageLayout } from '../../components/organisms/authPageLayout';
 import { FORGOT_PASSWORD } from '../../graphql/auth/mutations';
 import { extractGraphQLMessage } from '../../graphql/errors';
-import { useLangNavigate } from '../../hooks/useLangNavigate';
 import type { ForgotPasswordInput } from 'cv-graphql';
 
 type ForgotPasswordFormValues = {
@@ -18,7 +18,7 @@ type ForgotPasswordFormValues = {
 
 export const ForgotPasswordPage = () => {
   const { t } = useTranslation();
-  const navigate = useLangNavigate();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
@@ -39,13 +39,14 @@ export const ForgotPasswordPage = () => {
   };
 
   const handleCancelBtnClick = () => {
-    navigate('auth/login');
+    navigate('/auth/login');
   };
 
   useEffect(() => {
     if (!data) return;
 
-    showSnackbar(t('Check mail'), 'info');
+    navigate('/auth/login');
+    showSnackbar(t('auth.info.checkEmail'), 'info');
   }, [data]);
 
   useEffect(() => {

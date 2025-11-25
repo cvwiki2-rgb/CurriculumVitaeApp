@@ -1,6 +1,7 @@
 {
   "Started": "Запущено",
   "auth": {
+    "info": { "checkEmail": "Проверьте входящие сообщения" },
     "errors": {
       "loginFailed": "Ошибка авторизации",
       "signupFailed": "Ошибка регистрации",

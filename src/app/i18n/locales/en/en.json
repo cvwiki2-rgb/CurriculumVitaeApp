@@ -1,6 +1,7 @@
 {
   "Started": "Started ",
   "auth": {
+    "info": { "checkEmail": "Check your email inbox" },
     "errors": {
       "loginFailed": "Login failed",
       "signupFailed": "Sign up failed",
