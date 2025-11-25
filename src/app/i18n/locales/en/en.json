@@ -27,6 +27,12 @@
       "subtitle": "Welcome! Sign up to continue",
       "btnPrimary": "Create account",
       "btnSecondary": "I have an account"
+    },
+    "forgotPassword": {
+      "title": "Forgot password",
+      "subtitle": "We will sent you an email with further instructions",
+      "btnPrimary": "Reset password",
+      "btnSecondary": "Cancel"
     }
   }
 }

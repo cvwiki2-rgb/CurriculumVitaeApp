@@ -5,6 +5,7 @@ import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 import { RootLayout } from './RootLayout';
 import { RootRedirect } from './RootRedirect';
+import { ForgotPasswordPage } from '../pages/forgotPasswordPage';
 import { LoginPage } from '../pages/loginPage';
 import { SignupPage } from '../pages/signupPage';
 
@@ -23,7 +24,10 @@ export const router = createBrowserRouter([
               { path: 'signup', Component: SignupPage },
             ],
           },
-          { path: '/forgot-password' },
+          {
+            path: '/forgot-password',
+            Component: ForgotPasswordPage,
+          },
         ],
       },
       {
