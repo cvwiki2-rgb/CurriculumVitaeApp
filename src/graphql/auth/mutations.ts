@@ -33,3 +33,15 @@ export const SIGNUP = gql`
     }
   }
 `;
+
+export const FORGOT_PASSWORD = gql`
+  mutation ForgotPassword($auth: ForgotPasswordInput!) {
+    forgotPassword(auth: $auth)
+  }
+`;
+
+export const RESET_PASSWORD = gql`
+  mutation ResetPassword($auth: ResetPasswordInput!) {
+    resetPassword(auth: $auth)
+  }
+`;

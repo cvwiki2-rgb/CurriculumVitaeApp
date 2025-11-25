@@ -8,11 +8,23 @@ export const AppSnackbar = () => {
   return (
     <Snackbar
       open={open}
-      autoHideDuration={2000}
+      autoHideDuration={3000}
       onClose={hideSnackbar}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
     >
-      <Alert severity={severity} variant="filled" icon={false}>
+      <Alert
+        severity={severity}
+        variant="filled"
+        icon={false}
+        sx={
+          severity === 'info'
+            ? {
+                color: (theme) => theme.palette.background.default,
+                backgroundColor: (theme) => theme.palette.text.primary,
+              }
+            : {}
+        }
+      >
         {message}
       </Alert>
     </Snackbar>
