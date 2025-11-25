@@ -1,37 +1,29 @@
 import { createBrowserRouter } from 'react-router';
 import { AppLayout } from './AppLayout';
 import { AuthLayout } from './AuthLayout';
-import { LanguageLayout } from './LanguageLayout';
-import { LanguageRedirect } from './LanguageRedirect';
 import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
+import { RootLayout } from './RootLayout';
 import { RootRedirect } from './RootRedirect';
 import { LoginPage } from '../pages/loginPage';
 import { SignupPage } from '../pages/signupPage';
 
 export const router = createBrowserRouter([
   {
-    path: '/:lang',
-    Component: LanguageLayout,
+    Component: RootLayout,
     children: [
-      {
-        index: true,
-        Component: RootRedirect,
-      },
       {
         Component: PublicRoutes,
         children: [
           {
-            path: 'auth',
+            path: '/auth',
             Component: AuthLayout,
             children: [
               { path: 'login', Component: LoginPage },
               { path: 'signup', Component: SignupPage },
             ],
           },
-          {
-            path: 'forgot-password',
-          },
+          { path: '/forgot-password' },
         ],
       },
       {
@@ -39,11 +31,7 @@ export const router = createBrowserRouter([
         children: [
           {
             Component: AppLayout,
-            children: [
-              {
-                path: 'users',
-              },
-            ],
+            children: [{ path: '/users' }],
           },
         ],
       },
@@ -51,6 +39,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    Component: LanguageRedirect,
+    Component: RootRedirect,
   },
 ]);

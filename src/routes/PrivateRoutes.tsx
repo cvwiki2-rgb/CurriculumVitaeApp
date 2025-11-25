@@ -6,5 +6,5 @@ export const PrivateRoutes = () => {
   const auth = useReactiveVar(authVar);
   const isAuth = !!auth?.access_token;
 
-  return isAuth ? <Outlet /> : <Navigate to={`auth/login`} />;
+  return isAuth ? <Outlet /> : <Navigate to="/auth/login" replace />;
 };

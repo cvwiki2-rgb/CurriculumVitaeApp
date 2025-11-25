@@ -1,17 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router';
 
 export const LangSwitcher = () => {
   const { i18n } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { lang } = useParams<{ lang: string }>();
 
   const changeLanguage = (newLang: 'en' | 'ru') => {
-    if (newLang === lang) return;
+    if (newLang === i18n.language) return;
     i18n.changeLanguage(newLang);
-    const newPath = location.pathname.replace(`/${lang}`, `/${newLang}`);
-    navigate(newPath, { replace: true });
+    localStorage.setItem('lang', newLang);
   };
 
   return (
