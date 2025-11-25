@@ -57,7 +57,7 @@ export const LoginPage = () => {
 
     if (data.login) {
       setAuth(data.login);
-      navigate('/users');
+      navigate('/users', { replace: true });
     } else {
       showSnackbar(t('auth.errors.unexpectedResponse'), 'error');
     }
