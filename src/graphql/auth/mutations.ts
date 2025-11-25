@@ -33,3 +33,9 @@ export const SIGNUP = gql`
     }
   }
 `;
+
+export const FORGOT_PASSWORD = gql`
+  mutation ForgotPassword($auth: ForgotPasswordInput!) {
+    forgotPassword(auth: $auth)
+  }
+`;

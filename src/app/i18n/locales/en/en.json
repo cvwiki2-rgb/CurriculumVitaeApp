@@ -4,6 +4,7 @@
     "errors": {
       "loginFailed": "Login failed",
       "signupFailed": "Sign up failed",
+      "forgotPasswordFailed": "Request failed",
       "unexpectedResponse": "Unexpected server response"
     },
     "tabs": {

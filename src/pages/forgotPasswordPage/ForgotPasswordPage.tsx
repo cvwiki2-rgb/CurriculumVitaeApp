@@ -1,14 +1,19 @@
+import { useEffect } from 'react';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from '@apollo/client/react';
+import { showSnackbar } from '../../app/state/snackbar';
 import { StyledButton } from '../../components/atoms/styledButton';
 import { StyledInput } from '../../components/atoms/styledInput';
 import { AuthActionsContainer } from '../../components/molecules/authActionsContainer';
 import { AuthPageLayout } from '../../components/organisms/authPageLayout';
+import { FORGOT_PASSWORD } from '../../graphql/auth/mutations';
+import { extractGraphQLMessage } from '../../graphql/errors';
 import { useLangNavigate } from '../../hooks/useLangNavigate';
+import type { ForgotPasswordInput } from 'cv-graphql';
 
 type ForgotPasswordFormValues = {
   email: string;
-  password: string;
 };
 
 export const ForgotPasswordPage = () => {
@@ -24,11 +29,32 @@ export const ForgotPasswordPage = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<ForgotPasswordFormValues> = () => {};
+  const [execForgotPassword, { data, loading, error }] = useMutation<
+    { forgotPassword: void },
+    { auth: ForgotPasswordInput }
+  >(FORGOT_PASSWORD, { fetchPolicy: 'no-cache' });
+
+  const onSubmit: SubmitHandler<ForgotPasswordFormValues> = (formValues) => {
+    execForgotPassword({ variables: { auth: { email: formValues.email } } });
+  };
 
   const handleCancelBtnClick = () => {
     navigate('auth/login');
   };
+
+  useEffect(() => {
+    if (!data) return;
+
+    showSnackbar(t('Check mail'), 'info');
+  }, [data]);
+
+  useEffect(() => {
+    if (!error) return;
+
+    const msg =
+      extractGraphQLMessage(error) || t('auth.errors.forgotPasswordFailed');
+    showSnackbar(msg, 'error');
+  }, [error]);
 
   return (
     <AuthPageLayout
@@ -56,14 +82,14 @@ export const ForgotPasswordPage = () => {
           type="submit"
           color="primary"
           variant="contained"
-          //   disabled={loading}
+          disabled={loading}
         >
           {t('auth.forgotPassword.btnPrimary')}
         </StyledButton>
         <StyledButton
           color="secondary"
           variant="text"
-          //   disabled={loading}
+          disabled={loading}
           onClick={handleCancelBtnClick}
         >
           {t('auth.forgotPassword.btnSecondary')}

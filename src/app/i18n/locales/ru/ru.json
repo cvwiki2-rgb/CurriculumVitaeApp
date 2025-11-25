@@ -4,6 +4,7 @@
     "errors": {
       "loginFailed": "Ошибка авторизации",
       "signupFailed": "Ошибка регистрации",
+      "forgotPasswordFailed": "Ошибка запроса",
       "unexpectedResponse": "Неожиданная ошибка сервера"
     },
     "tabs": {
