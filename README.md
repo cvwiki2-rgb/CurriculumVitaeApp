@@ -2,7 +2,7 @@
 
 Application represents CurriculumVitaeApp built with TypeScript, Vite, Storybook, and Jest.
 
-## Task:
+## Tasks:
 
 - [link](https://curriculum-vitae-project.notion.site/b5c2402e649a44629178f52a8679eff9?v=66b53609862b4aeaa1134e4c6d74af6c)
 
