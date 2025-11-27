@@ -4,7 +4,7 @@ export const secondary = { main: '#767676', contrastText: '#fff' };
 export const lightPalette = {
   primary,
   secondary,
-  background: { default: '#F5F5F7' },
+  background: { default: '#F5F5F7', paper: ' #f5f5f7' },
   text: { primary: '#2e2e2e', secondary: '#2E2E2E' },
   action: {
     hover: 'rgba(0,0,0,0.04)',
@@ -17,7 +17,7 @@ export const lightPalette = {
 export const darkPalette = {
   primary,
   secondary,
-  background: { default: '#353535', paper: '#1e1e1e' },
+  background: { default: '#353535', paper: '#353535' },
   text: { primary: '#ffffff', secondary: '#f5f5f7' },
   action: {
     hover: 'rgba(255,255,255,0.08)',

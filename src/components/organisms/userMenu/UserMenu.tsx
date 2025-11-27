@@ -31,7 +31,15 @@ export const UserMenu = ({ anchorEl, onClose }: UserMenuProps) => {
       onClose={onClose}
       anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       transformOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-      sx={{ '& .MuiPaper-root': { minWidth: 200 } }}
+      slotProps={{
+        paper: {
+          sx: {
+            minWidth: 200,
+            backdropFilter: 'none',
+            backgroundImage: 'none',
+          },
+        },
+      }}
     >
       <UserMenuItem
         icon={<AccountCircle fontSize="small" />}
