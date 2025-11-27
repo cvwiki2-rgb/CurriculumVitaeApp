@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
+import { useReactiveVar } from '@apollo/client/react';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import GroupIcon from '@mui/icons-material/Group';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import TranslateIcon from '@mui/icons-material/Translate';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box, IconButton, Avatar, Typography } from '@mui/material';
+import { authVar } from '../../../graphql/state/auth';
 import { StyledButton } from '../../atoms/styledButton';
 import { SidebarItem } from '../../molecules/sidebarItem';
+import { UserMenu } from '../userMenu';
 
 const menu = [
   { label: 'Employees', icon: <GroupIcon />, to: '/users' },
@@ -17,6 +20,17 @@ const menu = [
 
 export const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+
+  const auth = useReactiveVar(authVar);
+
+  const handleUserClick = (e: MouseEvent<HTMLElement>) => {
+    setMenuAnchor(e.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setMenuAnchor(null);
+  };
 
   return (
     <Box
@@ -62,6 +76,7 @@ export const Sidebar = () => {
 
       <StyledButton
         variant="text"
+        onClick={handleUserClick}
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -110,9 +125,11 @@ export const Sidebar = () => {
             color: 'var(--sidebar-user-text)',
           }}
         >
-          selukdiana@gmail.com
+          {auth?.user.profile.full_name || auth?.user?.email || 'unknown'}
         </Typography>
       </StyledButton>
+
+      <UserMenu anchorEl={menuAnchor} onClose={handleMenuClose} />
 
       <IconButton
         sx={{
