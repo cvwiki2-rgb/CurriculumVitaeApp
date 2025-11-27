@@ -38,7 +38,8 @@ export function updateAuth(auth: UpdateTokenResult) {
   }
   const currentAuth = authVar();
   if (!currentAuth) {
-    authVar({});
+    authVar({ user: defaultUser, ...auth });
+    return;
   }
   const updatedAuth = { ...currentAuth, ...auth };
   authVar(updatedAuth);
