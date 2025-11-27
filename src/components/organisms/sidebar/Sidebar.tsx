@@ -41,7 +41,7 @@ export const Sidebar = () => {
   return (
     <Box
       component="aside"
-      sx={{
+      sx={(theme) => ({
         gridArea: 'navigation',
         width: collapsed ? '56px' : '200px',
         transition: 'width 0.3s',
@@ -50,7 +50,7 @@ export const Sidebar = () => {
         paddingTop: '44px',
         paddingBottom: '16px',
         overflowX: 'hidden',
-        '@media (max-width:768px)': {
+        [theme.breakpoints.down(768)]: {
           width: '100%',
           height: '56px',
           display: 'grid',
@@ -58,22 +58,22 @@ export const Sidebar = () => {
           padding: '0px 16px',
           gap: '14px',
         },
-      }}
+      })}
     >
       <Box
         component="nav"
-        sx={{
+        sx={(theme) => ({
           width: '100%',
           display: 'grid',
           gap: '14px',
           marginBottom: 'auto',
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             marginTop: 0,
             height: '100%',
             gridTemplateColumns: 'repeat(3, 1fr)',
             alignItems: 'center',
           },
-        }}
+        })}
       >
         {menu.map((item) => (
           <SidebarItem key={item.label} {...item} />
@@ -83,7 +83,7 @@ export const Sidebar = () => {
       <StyledButton
         variant="text"
         onClick={handleUserClick}
-        sx={{
+        sx={(theme) => ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
@@ -98,7 +98,7 @@ export const Sidebar = () => {
           '&:hover': {
             backgroundColor: 'var(--sidebar-user-hover-bg) !important',
           },
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             borderRadius: '200px',
             height: '40px',
             minHeight: '40px',
@@ -108,7 +108,7 @@ export const Sidebar = () => {
               backgroundColor: 'transparent !important',
             },
           },
-        }}
+        })}
       >
         <Avatar
           sx={{
@@ -138,7 +138,7 @@ export const Sidebar = () => {
       <UserMenu anchorEl={menuAnchor} onClose={handleMenuClose} />
 
       <IconButton
-        sx={{
+        sx={(theme) => ({
           color: 'var(--sidebar-collapse-icon-color)',
           margin: '14px 0 0 8px',
           padding: 1,
@@ -148,10 +148,10 @@ export const Sidebar = () => {
           '&:hover': {
             backgroundColor: 'var(--sidebar-collapse-hover-bg)',
           },
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             display: 'none',
           },
-        }}
+        })}
         onClick={() => setCollapsed((p) => !p)}
       >
         <KeyboardArrowLeftIcon
