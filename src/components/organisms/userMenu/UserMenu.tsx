@@ -1,0 +1,54 @@
+import { useNavigate } from 'react-router';
+import { useReactiveVar } from '@apollo/client/react';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Logout from '@mui/icons-material/Logout';
+import Settings from '@mui/icons-material/Settings';
+import { Menu, Divider } from '@mui/material';
+import { authVar, clearAuth } from '../../../graphql/state/auth';
+import { UserMenuItem } from '../../molecules/userMenuItem';
+
+export interface UserMenuProps {
+  anchorEl: HTMLElement | null;
+  onClose: () => void;
+}
+
+export const UserMenu = ({ anchorEl, onClose }: UserMenuProps) => {
+  const navigate = useNavigate();
+  const auth = useReactiveVar(authVar);
+  const open = Boolean(anchorEl);
+
+  const handleLogoutClick = () => {
+    clearAuth();
+    navigate('/auth/login');
+  };
+
+  return (
+    <Menu
+      anchorEl={anchorEl}
+      open={open}
+      onClose={onClose}
+      anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+      transformOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+      sx={{ '& .MuiPaper-root': { minWidth: 200 } }}
+    >
+      <UserMenuItem
+        icon={<AccountCircle fontSize="small" />}
+        label="Profile"
+        to={`/users/${auth?.user.profile.id}`}
+      />
+      <UserMenuItem
+        icon={<Settings fontSize="small" />}
+        label="Settings"
+        to="/settings"
+      />
+
+      <Divider />
+
+      <UserMenuItem
+        icon={<Logout fontSize="small" />}
+        label="Logout"
+        onClick={handleLogoutClick}
+      />
+    </Menu>
+  );
+};
