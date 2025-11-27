@@ -1,4 +1,5 @@
 import { useState, type MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useReactiveVar } from '@apollo/client/react';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import GroupIcon from '@mui/icons-material/Group';
@@ -11,18 +12,23 @@ import { StyledButton } from '../../atoms/styledButton';
 import { SidebarItem } from '../../molecules/sidebarItem';
 import { UserMenu } from '../userMenu';
 
-const menu = [
-  { label: 'Employees', icon: <GroupIcon />, to: '/users' },
-  { label: 'Skills', icon: <TrendingUpIcon />, to: '/skills' },
-  { label: 'Languages', icon: <TranslateIcon />, to: '/languages' },
-  { label: 'CVs', icon: <ContactPageOutlinedIcon />, to: '/cvs' },
-];
-
 export const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
 
   const auth = useReactiveVar(authVar);
+  const { t } = useTranslation();
+
+  const menu = [
+    { label: t('sidebar.employees'), icon: <GroupIcon />, to: '/users' },
+    { label: t('sidebar.skills'), icon: <TrendingUpIcon />, to: '/skills' },
+    {
+      label: t('sidebar.languages'),
+      icon: <TranslateIcon />,
+      to: '/languages',
+    },
+    { label: t('sidebar.cvs'), icon: <ContactPageOutlinedIcon />, to: '/cvs' },
+  ];
 
   const handleUserClick = (e: MouseEvent<HTMLElement>) => {
     setMenuAnchor(e.currentTarget);

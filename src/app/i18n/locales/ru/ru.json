@@ -28,5 +28,16 @@
       "btnPrimary": "Создать аккаунт",
       "btnSecondary": "У меня есть аккаунт"
     }
+  },
+  "sidebar": {
+    "employees": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cvs": "Резюме",
+    "menu": {
+      "profile": "Профиль",
+      "settings": "Настройки",
+      "logout": "Выйти"
+    }
   }
 }

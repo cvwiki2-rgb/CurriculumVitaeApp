@@ -11,7 +11,7 @@ export const lightPalette = {
     disabled: 'rgba(0,0,0,0.26)',
     disabledBackground: 'rgba(0,0,0,0.12)',
   },
-  divider: 'rgba(rgba(0,0,0,0.12))',
+  divider: 'rgba(0,0,0,0.12)',
 };
 
 export const darkPalette = {

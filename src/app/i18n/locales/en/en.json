@@ -28,5 +28,16 @@
       "btnPrimary": "Create account",
       "btnSecondary": "I have an account"
     }
+  },
+  "sidebar": {
+    "employees": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cvs": "CVs",
+    "menu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
   }
 }
