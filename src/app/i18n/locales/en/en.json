@@ -28,5 +28,13 @@
       "btnPrimary": "Create account",
       "btnSecondary": "I have an account"
     }
+  },
+  "header": {
+    "users": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cvs": "CVs",
+    "projects": "Projects",
+    "preview": "Preview"
   }
 }
