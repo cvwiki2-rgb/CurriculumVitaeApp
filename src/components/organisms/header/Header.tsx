@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useLocation, Link as RouterLink, useParams } from 'react-router';
+import { useLocation, NavLink, useParams } from 'react-router';
 import { NavigateNext, PersonOutlineOutlined } from '@mui/icons-material';
 import { Breadcrumbs, Typography, Link } from '@mui/material';
 
@@ -40,7 +40,7 @@ export const Header = () => {
         height: 44,
         paddingLeft: '20px',
         paddingTop: '16px',
-        color: '#ffffffb3',
+        color: 'var(--header-segment)',
         '& .MuiBreadcrumbs-li:last-child': {
           pointerEvents: 'none',
           opacity: 0.6,
@@ -52,33 +52,23 @@ export const Header = () => {
     >
       {pathnames.map((segment: string, index: number) => {
         const to = '/' + pathnames.slice(0, index + 1).join('/');
-        const isLast = index === pathnames.length - 1;
         const isId = isIdSegment(segment);
         const label = resolveLabel(segment);
 
-        return isLast ? (
-          <Typography key={to} sx={{ color: '#ffffffb3' }}>
-            {label}
-          </Typography>
-        ) : (
+        return (
           <Link
             key={to}
-            component={RouterLink}
+            component={NavLink}
             to={to}
             underline="hover"
-            sx={
-              isId
-                ? {
-                    color: 'palette.primary',
-                    textTransform: 'capitalize',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }
-                : { color: 'inherit' }
-            }
+            sx={{
+              color: isId ? 'primary.main' : 'inherit',
+              display: 'flex',
+              alignItems: 'center',
+            }}
           >
             {isId && <PersonOutlineOutlined sx={{ mr: 0.5 }} />}
-            {label}
+            <Typography sx={{ m: 0 }}>{label}</Typography>
           </Link>
         );
       })}
