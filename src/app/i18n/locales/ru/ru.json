@@ -28,5 +28,13 @@
       "btnPrimary": "Создать аккаунт",
       "btnSecondary": "У меня есть аккаунт"
     }
+  },
+  "header": {
+    "users": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cvs": "Резюме",
+    "projects": "Проекты",
+    "preview": "Просмотр"
   }
 }
