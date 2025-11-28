@@ -1,27 +1,47 @@
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useReactiveVar } from '@apollo/client/react';
 import ContactPageOutlinedIcon from '@mui/icons-material/ContactPageOutlined';
 import GroupIcon from '@mui/icons-material/Group';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import TranslateIcon from '@mui/icons-material/Translate';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Box, IconButton, Avatar, Typography } from '@mui/material';
+import { authVar } from '../../../graphql/state/auth';
 import { StyledButton } from '../../atoms/styledButton';
 import { SidebarItem } from '../../molecules/sidebarItem';
-
-const menu = [
-  { label: 'Employees', icon: <GroupIcon />, to: '/users' },
-  { label: 'Skills', icon: <TrendingUpIcon />, to: '/skills' },
-  { label: 'Languages', icon: <TranslateIcon />, to: '/languages' },
-  { label: 'CVs', icon: <ContactPageOutlinedIcon />, to: '/cvs' },
-];
+import { UserMenu } from '../userMenu';
 
 export const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+
+  const auth = useReactiveVar(authVar);
+  const { t } = useTranslation();
+
+  const menu = [
+    { label: t('sidebar.employees'), icon: <GroupIcon />, to: '/users' },
+    { label: t('sidebar.skills'), icon: <TrendingUpIcon />, to: '/skills' },
+    {
+      label: t('sidebar.languages'),
+      icon: <TranslateIcon />,
+      to: '/languages',
+    },
+    { label: t('sidebar.cvs'), icon: <ContactPageOutlinedIcon />, to: '/cvs' },
+  ];
+
+  const handleUserClick = (e: MouseEvent<HTMLElement>) => {
+    setMenuAnchor(e.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setMenuAnchor(null);
+  };
 
   return (
     <Box
       component="aside"
-      sx={{
+      sx={(theme) => ({
         gridArea: 'navigation',
         width: collapsed ? '56px' : '200px',
         transition: 'width 0.3s',
@@ -30,7 +50,7 @@ export const Sidebar = () => {
         paddingTop: '44px',
         paddingBottom: '16px',
         overflowX: 'hidden',
-        '@media (max-width:768px)': {
+        [theme.breakpoints.down(768)]: {
           width: '100%',
           height: '56px',
           display: 'grid',
@@ -38,22 +58,22 @@ export const Sidebar = () => {
           padding: '0px 16px',
           gap: '14px',
         },
-      }}
+      })}
     >
       <Box
         component="nav"
-        sx={{
+        sx={(theme) => ({
           width: '100%',
           display: 'grid',
           gap: '14px',
           marginBottom: 'auto',
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             marginTop: 0,
             height: '100%',
             gridTemplateColumns: 'repeat(3, 1fr)',
             alignItems: 'center',
           },
-        }}
+        })}
       >
         {menu.map((item) => (
           <SidebarItem key={item.label} {...item} />
@@ -62,7 +82,8 @@ export const Sidebar = () => {
 
       <StyledButton
         variant="text"
-        sx={{
+        onClick={handleUserClick}
+        sx={(theme) => ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
@@ -77,7 +98,7 @@ export const Sidebar = () => {
           '&:hover': {
             backgroundColor: 'var(--sidebar-user-hover-bg) !important',
           },
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             borderRadius: '200px',
             height: '40px',
             minHeight: '40px',
@@ -87,7 +108,7 @@ export const Sidebar = () => {
               backgroundColor: 'transparent !important',
             },
           },
-        }}
+        })}
       >
         <Avatar
           sx={{
@@ -110,12 +131,14 @@ export const Sidebar = () => {
             color: 'var(--sidebar-user-text)',
           }}
         >
-          selukdiana@gmail.com
+          {auth?.user.profile.full_name || auth?.user?.email || 'unknown'}
         </Typography>
       </StyledButton>
 
+      <UserMenu anchorEl={menuAnchor} onClose={handleMenuClose} />
+
       <IconButton
-        sx={{
+        sx={(theme) => ({
           color: 'var(--sidebar-collapse-icon-color)',
           margin: '14px 0 0 8px',
           padding: 1,
@@ -125,10 +148,10 @@ export const Sidebar = () => {
           '&:hover': {
             backgroundColor: 'var(--sidebar-collapse-hover-bg)',
           },
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             display: 'none',
           },
-        }}
+        })}
         onClick={() => setCollapsed((p) => !p)}
       >
         <KeyboardArrowLeftIcon

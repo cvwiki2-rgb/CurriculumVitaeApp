@@ -8,11 +8,6 @@ export const lightTheme = createTheme({
   palette: {
     ...baseTheme.palette,
     ...lightPalette,
-    action: {
-      hover: 'rgb(0 0 0 / 4%)',
-      disabled: 'rgb(0 0 0 / 26%)',
-      disabledBackground: 'rgb(0 0 0 / 12%)',
-    },
     mode: 'light',
   },
 
@@ -31,11 +26,6 @@ export const darkTheme = createTheme({
   palette: {
     ...baseTheme.palette,
     ...darkPalette,
-    action: {
-      hover: 'rgb(255 255 255 / 8%)',
-      disabled: 'rgb(255 255 255 / 30%)',
-      disabledBackground: 'rgb(255 255 255 / 12%)',
-    },
     mode: 'dark',
   },
   components: {

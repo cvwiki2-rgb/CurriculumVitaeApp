@@ -13,7 +13,7 @@ export const SidebarItem = ({ to, icon, label }: SidebarItemProps) => {
     <Box
       component={NavLink}
       to={to}
-      sx={{
+      sx={(theme) => ({
         display: 'flex',
         alignItems: 'center',
         gap: 2,
@@ -32,7 +32,7 @@ export const SidebarItem = ({ to, icon, label }: SidebarItemProps) => {
           color: 'var(--sidebar-item-active-color)',
           backgroundColor: 'var(--sidebar-item-active-bg)',
         },
-        '@media (max-width:768px)': {
+        [theme.breakpoints.down(768)]: {
           justifyContent: 'center',
           height: '40px',
           borderRadius: '200px',
@@ -41,21 +41,21 @@ export const SidebarItem = ({ to, icon, label }: SidebarItemProps) => {
             display: 'none',
           },
         },
-      }}
+      })}
     >
       {icon}
 
       <Box
         component="span"
-        sx={{
+        sx={(theme) => ({
           flex: 1,
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
-          '@media (max-width:768px)': {
+          [theme.breakpoints.down(768)]: {
             display: 'none',
           },
-        }}
+        })}
       >
         {label}
       </Box>
