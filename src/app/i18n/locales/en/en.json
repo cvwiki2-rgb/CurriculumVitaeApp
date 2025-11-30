@@ -28,5 +28,19 @@
       "btnPrimary": "Create account",
       "btnSecondary": "I have an account"
     }
+  },
+  "errors": {
+    "failedToLoadUsers": "Failed to load users"
+  },
+
+  "users": {
+    "title": "Employees",
+    "table": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "position": "Position",
+      "department": "Department"
+    }
   }
 }

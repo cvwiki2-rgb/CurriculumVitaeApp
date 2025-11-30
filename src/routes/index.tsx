@@ -7,6 +7,7 @@ import { RootLayout } from './RootLayout';
 import { RootRedirect } from './RootRedirect';
 import { LoginPage } from '../pages/loginPage';
 import { SignupPage } from '../pages/signupPage';
+import { UsersPage } from '../pages/usersPage/UsersPage';
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
         children: [
           {
             Component: AppLayout,
-            children: [{ path: '/users' }],
+            children: [{ path: '/users', Component: UsersPage }],
           },
         ],
       },

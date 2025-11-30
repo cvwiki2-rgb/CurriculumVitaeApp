@@ -28,5 +28,19 @@
       "btnPrimary": "Создать аккаунт",
       "btnSecondary": "У меня есть аккаунт"
     }
+  },
+  "errors": {
+    "failedToLoadUsers": "Не удалось загрузить список пользователей"
+  },
+
+  "users": {
+    "title": "Сотрудники",
+    "table": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "email": "Email",
+      "position": "Должность",
+      "department": "Отдел"
+    }
   }
 }
