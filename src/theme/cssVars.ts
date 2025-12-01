@@ -10,6 +10,8 @@ export const lightCssVars = {
   '--sidebar-user-hover-bg': 'rgb(0 0 0 / 2%)',
   '--sidebar-collapse-icon-color': 'rgb(0 0 0 / 54%)',
   '--sidebar-collapse-hover-bg': 'rgb(0 0 0 / 4%)',
+
+  '--skills-btns-bg': 'rgb(245 245 247)',
 };
 
 export const darkCssVars = {
@@ -24,4 +26,6 @@ export const darkCssVars = {
   '--sidebar-user-hover-bg': 'rgb(118 118 118 / 8%)',
   '--sidebar-collapse-icon-color': 'rgb(255 255 255)',
   '--sidebar-collapse-hover-bg': 'rgb(255 255 255 / 8%)',
+
+  '--skills-btns-bg': 'rgb(53 53 53)',
 };
