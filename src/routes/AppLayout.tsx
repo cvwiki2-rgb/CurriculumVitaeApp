@@ -1,10 +1,8 @@
 import { Outlet } from 'react-router';
-import { Box, Switch } from '@mui/material';
+import { Box } from '@mui/material';
 import { Sidebar } from '../components/organisms/sidebar';
-import { useAppTheme } from '../context/ThemeContext';
 
 export const AppLayout = () => {
-  const { toggleTheme, mode } = useAppTheme();
   return (
     <Box
       sx={{
@@ -22,7 +20,6 @@ export const AppLayout = () => {
         component="main"
         sx={{ width: '100%', gridArea: 'page', overflowY: 'scroll' }}
       >
-        <Switch checked={mode === 'dark'} onChange={toggleTheme} />
         <Outlet />
       </Box>
     </Box>
