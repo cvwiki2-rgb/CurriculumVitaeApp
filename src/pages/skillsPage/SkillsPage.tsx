@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useQuery, useReactiveVar } from '@apollo/client/react';
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client/react';
 import { Box, CircularProgress } from '@mui/material';
 import { showSnackbar } from '../../app/state/snackbar';
 import { SkillsPageLayout } from '../../components/organisms/skillsPageLayout';
 import { extractGraphQLMessage } from '../../graphql/errors';
+import { DELETE_PROFILE_SKILLS } from '../../graphql/profileSkills/mutations';
 import {
   PROFILE_SKILLS,
   SKILL_CATEGORIES,
@@ -34,6 +35,16 @@ export const SkillsPage = () => {
     skillCategories: SkillCategory[];
   }>(SKILL_CATEGORIES);
 
+  const [execDeleteProfileSkills] = useMutation(DELETE_PROFILE_SKILLS, {
+    onCompleted: () => {
+      showSnackbar('Skill was removed', 'info');
+    },
+    onError: (error) => {
+      const msg = extractGraphQLMessage(error) || 'fail';
+      showSnackbar(msg, 'error');
+    },
+  });
+
   const loading = skillsLoading || categoriesLoading;
   const error = skillsError || categoriesError;
 
@@ -48,7 +59,10 @@ export const SkillsPage = () => {
     console.log('add');
   };
   const handleSkillsDelete = (skillsNames: string[]) => {
-    console.log(skillsNames);
+    if (!auth?.user?.id) return;
+    execDeleteProfileSkills({
+      variables: { skill: { name: skillsNames, userId: auth.user.id } },
+    });
   };
 
   if (loading)
