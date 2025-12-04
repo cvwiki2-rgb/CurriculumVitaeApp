@@ -1,14 +1,15 @@
-import type { Skill } from '../types/skills';
-import type { SkillCategory } from 'cv-graphql';
+import type { SkillCategory, SkillMastery } from 'cv-graphql';
 
 export const groupSkillsByCategory = (
   categories: SkillCategory[],
-  skills: Skill[],
+  skills: SkillMastery[],
 ) => {
   const categoryMap = new Map(categories.map((c) => [c.id, c]));
 
-  const groups: Record<string, { category: SkillCategory; skills: Skill[] }> =
-    {};
+  const groups: Record<
+    string,
+    { category: SkillCategory; skills: SkillMastery[] }
+  > = {};
 
   for (const skill of skills) {
     if (!skill.categoryId) continue;
