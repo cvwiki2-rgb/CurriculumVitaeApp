@@ -1,29 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client/react';
 import { Box, CircularProgress } from '@mui/material';
+import {
+  type Mastery,
+  type AddProfileSkillInput,
+  type DeleteProfileSkillInput,
+  type Profile,
+  type SkillCategory,
+  type UpdateProfileSkillInput,
+} from 'cv-graphql';
 import { showSnackbar } from '../../app/state/snackbar';
 import { SkillsPageLayout } from '../../components/organisms/skillsPageLayout';
 import { extractGraphQLMessage } from '../../graphql/errors';
-import { DELETE_PROFILE_SKILLS } from '../../graphql/profileSkills/mutations';
+import {
+  ADD_PROFILE_SKILL,
+  DELETE_PROFILE_SKILLS,
+  UPDATE_PROFILE_SKILL,
+} from '../../graphql/profileSkills/mutations';
 import {
   PROFILE_SKILLS,
   SKILL_CATEGORIES,
 } from '../../graphql/profileSkills/queries';
 import { authVar } from '../../graphql/state/auth';
-import type { Skill } from '../../types/skills';
-import type { SkillCategory } from 'cv-graphql';
 
 export const SkillsPage = () => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   const auth = useReactiveVar(authVar);
 
   const {
     data: profileSkills,
     loading: skillsLoading,
     error: skillsError,
-  } = useQuery<
-    { profile: { id: string; skills: Skill[] } },
-    { userId: string }
-  >(PROFILE_SKILLS, {
+  } = useQuery<{ profile: Profile }, { userId: string }>(PROFILE_SKILLS, {
     variables: { userId: auth?.user?.id || '' },
   });
 
@@ -35,9 +44,38 @@ export const SkillsPage = () => {
     skillCategories: SkillCategory[];
   }>(SKILL_CATEGORIES);
 
-  const [execDeleteProfileSkills] = useMutation(DELETE_PROFILE_SKILLS, {
+  const [execDeleteProfileSkills] = useMutation<
+    { deleteProfileSkill: Profile },
+    { skill: DeleteProfileSkillInput }
+  >(DELETE_PROFILE_SKILLS, {
     onCompleted: () => {
       showSnackbar('Skill was removed', 'info');
+    },
+    onError: (error) => {
+      const msg = extractGraphQLMessage(error) || 'fail';
+      showSnackbar(msg, 'error');
+    },
+  });
+
+  const [execAddProfileSkill] = useMutation<
+    { addProfileSkill: Profile },
+    { skill: AddProfileSkillInput }
+  >(ADD_PROFILE_SKILL, {
+    onCompleted: () => {
+      showSnackbar('Skill was added', 'info');
+    },
+    onError: (error) => {
+      const msg = extractGraphQLMessage(error) || 'fail';
+      showSnackbar(msg, 'error');
+    },
+  });
+
+  const [execUpdateProfileSkill] = useMutation<
+    { updateProfileSkill: Profile },
+    { skill: UpdateProfileSkillInput }
+  >(UPDATE_PROFILE_SKILL, {
+    onCompleted: () => {
+      showSnackbar('Skill was updated', 'info');
     },
     onError: (error) => {
       const msg = extractGraphQLMessage(error) || 'fail';
@@ -55,9 +93,37 @@ export const SkillsPage = () => {
     showSnackbar(msg, 'error');
   }, [error]);
 
-  const handleSkillAdd = () => {
-    console.log('add');
+  const handleSkillAdd = (
+    name: string,
+    mastery: Mastery,
+    categoryId?: string | null,
+  ) => {
+    setDialogOpen(false);
+    console.log(name, mastery);
+    if (!auth?.user?.id) return;
+    execAddProfileSkill({
+      variables: {
+        skill: {
+          userId: auth.user.id,
+          name,
+          mastery,
+          categoryId,
+        },
+      },
+    });
   };
+
+  const handleSkillUpdate = (
+    name: string,
+    mastery: Mastery,
+    categoryId?: string | null,
+  ) => {
+    if (!auth?.user?.id) return;
+    execUpdateProfileSkill({
+      variables: { skill: { userId: auth.user.id, name, mastery, categoryId } },
+    });
+  };
+
   const handleSkillsDelete = (skillsNames: string[]) => {
     if (!auth?.user?.id) return;
     execDeleteProfileSkills({
@@ -78,6 +144,10 @@ export const SkillsPage = () => {
       categories={categories.skillCategories}
       handleDelete={handleSkillsDelete}
       handleAdd={handleSkillAdd}
+      handleUpdate={handleSkillUpdate}
+      dialogOpen={dialogOpen}
+      onOpenDialog={() => setDialogOpen(true)}
+      onCloseDialog={() => setDialogOpen(false)}
     />
   );
 };
