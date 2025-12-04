@@ -10,6 +10,7 @@ declare module '@mui/material/styles' {
       Expert: { bar: string; track: string; value: number };
     };
     menu: { background: string };
+    skillItem: { action: { hover: string } };
   }
   interface PaletteOptions {
     mastery?: {
@@ -22,6 +23,7 @@ declare module '@mui/material/styles' {
     menu?: {
       background?: string;
     };
+    skillItem?: { action?: { hover?: string } };
   }
 }
 export {};

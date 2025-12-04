@@ -1,7 +1,7 @@
 import { LinearProgress, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { StyledButton } from '../../atoms/styledButton';
-import type { Mastery } from '../../../types/skills';
+import type { Mastery } from 'cv-graphql';
 
 interface SkillItemProps {
   mastery: Mastery;
@@ -10,6 +10,7 @@ interface SkillItemProps {
   deleteMode?: boolean;
   selected?: boolean;
   onToggleSelect?: () => void;
+  onClick: () => void;
 }
 
 export const SkillItem = ({
@@ -19,6 +20,7 @@ export const SkillItem = ({
   deleteMode,
   selected,
   onToggleSelect,
+  onClick,
 }: SkillItemProps) => {
   const theme = useTheme();
   const { bar, track, value } =
@@ -28,15 +30,16 @@ export const SkillItem = ({
     <StyledButton
       variant="text"
       disabled={!!readOnly && !deleteMode}
-      onClick={deleteMode ? onToggleSelect : undefined}
+      onClick={deleteMode ? onToggleSelect : onClick}
       sx={{
+        cursor: 'pointer',
         textTransform: 'none',
         display: 'grid',
         gridTemplateColumns: '0.5fr 1fr',
         gap: '16px',
         padding: '8px 16px',
         '&:hover': {
-          backgroundColor: 'rgba(118, 118, 118, 0.08) !important',
+          backgroundColor: (theme) => theme.palette.skillItem.action.hover,
         },
         '&.Mui-disabled': {
           backgroundColor: 'transparent !important',

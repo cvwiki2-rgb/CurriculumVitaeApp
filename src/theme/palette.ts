@@ -15,6 +15,7 @@ export const lightPalette = {
   },
   mastery: lightMastery,
   menu: { background: '#121212' },
+  skillItem: { action: { hover: 'rgba(118,118,118,0.08)' } },
 };
 
 export const darkPalette = {
@@ -29,4 +30,5 @@ export const darkPalette = {
   },
   mastery: darkMastery,
   menu: { background: '#121212' },
+  skillItem: { action: { hover: 'rgba(118,118,118,0.08)' } },
 };
