@@ -5,15 +5,27 @@ import { groupSkillsByCategory } from '../../../utils/groupSkillsByCategory';
 import { StyledButton } from '../../atoms/styledButton';
 import { SkillItem } from '../../molecules/skillItem';
 import { SkillsList } from '../../molecules/skillsList';
-import type { Skill } from '../../../types/skills';
-import type { SkillCategory } from 'cv-graphql';
+import { SkillDialog } from '../skillDialog';
+import type { Mastery, SkillCategory, SkillMastery } from 'cv-graphql';
 
 interface SkillsPageLayoutProps {
-  skills: Skill[];
+  skills: SkillMastery[];
   categories: SkillCategory[];
   readOnly?: boolean;
-  handleAdd?: () => void;
+  handleAdd?: (
+    skill: string,
+    mastery: Mastery,
+    categoryId?: null | string,
+  ) => void;
+  handleUpdate?: (
+    skill: string,
+    mastery: Mastery,
+    categoryId?: string | null,
+  ) => void;
   handleDelete?: (skills: string[]) => void;
+  dialogOpen?: boolean;
+  onOpenDialog?: () => void;
+  onCloseDialog?: () => void;
 }
 
 export const SkillsPageLayout = ({
@@ -21,10 +33,36 @@ export const SkillsPageLayout = ({
   categories,
   readOnly,
   handleAdd,
+  handleUpdate,
   handleDelete,
+  onOpenDialog,
+  dialogOpen = false,
+  onCloseDialog,
 }: SkillsPageLayoutProps) => {
   const [deleteMode, setDeleteMode] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [dialogMode, setDialogMode] = useState<'add' | 'update'>('add');
+  const [initialSkill, setInitialSkill] = useState<{
+    name: string;
+    mastery: Mastery;
+    categoryId: string | null;
+  } | null>(null);
+
+  const openAddDialog = () => {
+    setDialogMode('add');
+    setInitialSkill(null);
+    onOpenDialog?.();
+  };
+
+  const openUpdateDialog = (skill: SkillMastery) => {
+    setDialogMode('update');
+    setInitialSkill({
+      name: skill.name,
+      mastery: skill.mastery,
+      categoryId: skill.categoryId ?? null,
+    });
+    onOpenDialog?.();
+  };
 
   const handleToggleSelect = (name: string) => {
     setSelected((prev) => {
@@ -58,6 +96,7 @@ export const SkillsPageLayout = ({
               deleteMode={deleteMode}
               selected={selected.has(skill.name)}
               onToggleSelect={() => handleToggleSelect(skill.name)}
+              onClick={() => !readOnly && openUpdateDialog(skill)}
               key={skill.name}
             />
           ))}
@@ -67,7 +106,8 @@ export const SkillsPageLayout = ({
         <Box
           sx={{
             position: 'sticky',
-            bottom: '16px',
+            bottom: 0,
+            paddingBottom: '16px',
             zIndex: 3,
             height: '64px',
             width: 'calc(100% + 48px)',
@@ -76,8 +116,8 @@ export const SkillsPageLayout = ({
             alignItems: 'flex-end',
             justifyContent: 'flex-end',
             gap: '16px',
-            background:
-              'linear-gradient(transparent 0%, var(--skills-btns-bg) 50%)',
+            background: (theme) =>
+              `linear-gradient(transparent 0%, ${theme.palette.background.default} 50%)`,
             backdropFilter: 'blur(0.5px)',
             '& .MuiButton-root': {
               gap: '16px',
@@ -133,7 +173,7 @@ export const SkillsPageLayout = ({
               <StyledButton
                 variant="text"
                 color="secondary"
-                onClick={handleAdd}
+                onClick={openAddDialog}
               >
                 <AddIcon />
                 Add skill
@@ -150,6 +190,21 @@ export const SkillsPageLayout = ({
           )}
         </Box>
       )}
+      <SkillDialog
+        existingSkills={skills}
+        open={dialogOpen}
+        mode={dialogMode}
+        initialSkill={initialSkill ?? undefined}
+        onClose={onCloseDialog}
+        onConfirm={(name, mastery, categoryId) => {
+          if (dialogMode === 'add') {
+            handleAdd?.(name, mastery, categoryId);
+          } else {
+            handleUpdate?.(name, mastery, categoryId);
+          }
+          onCloseDialog?.();
+        }}
+      />
     </Container>
   );
 };
