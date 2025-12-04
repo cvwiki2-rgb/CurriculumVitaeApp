@@ -29,3 +29,20 @@ export const SKILL_CATEGORIES = gql`
     }
   }
 `;
+
+export const SKILLS = gql`
+  query Skills {
+    skills {
+      id
+      name
+      category {
+        id
+        order
+        __typename
+      }
+      category_name
+      category_parent_name
+      __typename
+    }
+  }
+`;
