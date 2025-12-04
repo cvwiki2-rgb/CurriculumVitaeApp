@@ -14,6 +14,7 @@ export const lightPalette = {
     disabledBackground: 'rgba(0,0,0,0.12)',
   },
   mastery: lightMastery,
+  menu: { background: '#121212' },
 };
 
 export const darkPalette = {
@@ -27,4 +28,5 @@ export const darkPalette = {
     disabledBackground: 'rgba(255,255,255,0.12)',
   },
   mastery: darkMastery,
+  menu: { background: '#121212' },
 };
