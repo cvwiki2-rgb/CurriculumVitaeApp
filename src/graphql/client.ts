@@ -16,6 +16,16 @@ const httpLink = new HttpLink({
 
 const authLink = new SetContextLink((prevContext) => {
   const tokenData = authVar(); // AuthResult | null
+  if (prevContext.useRefreshToken) {
+    return {
+      headers: {
+        ...prevContext.headers,
+        Authorization: tokenData?.refresh_token
+          ? `Bearer ${tokenData.refresh_token}`
+          : '',
+      },
+    };
+  }
   const token =
     tokenData?.access_token ?? localStorage.getItem('access_token') ?? '';
 
@@ -30,6 +40,12 @@ const authLink = new SetContextLink((prevContext) => {
 const errorLink = new ErrorLink(({ error, operation, forward }) => {
   if (!CombinedGraphQLErrors.is(error)) {
     console.error('[Network error]:', error);
+    return;
+  }
+
+  if (operation.operationName === 'UpdateToken') {
+    console.warn('Refresh mutation failed — stopping retry loop');
+    clearAuth();
     return;
   }
 
