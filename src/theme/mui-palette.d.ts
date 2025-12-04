@@ -9,6 +9,7 @@ declare module '@mui/material/styles' {
       Proficient: { bar: string; track: string; value: number };
       Expert: { bar: string; track: string; value: number };
     };
+    menu: { background: string };
   }
   interface PaletteOptions {
     mastery?: {
@@ -17,6 +18,9 @@ declare module '@mui/material/styles' {
       Advanced?: { bar: string; track: string; value: number };
       Proficient?: { bar: string; track: string; value: number };
       Expert?: { bar: string; track: string; value: number };
+    };
+    menu?: {
+      background?: string;
     };
   }
 }
