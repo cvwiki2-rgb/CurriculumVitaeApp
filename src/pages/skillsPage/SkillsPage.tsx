@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client/react';
 import { Box, CircularProgress } from '@mui/material';
 import {
@@ -24,6 +25,8 @@ import {
 import { authVar } from '../../graphql/state/auth';
 
 export const SkillsPage = () => {
+  const { t } = useTranslation();
+
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const auth = useReactiveVar(authVar);
@@ -49,10 +52,11 @@ export const SkillsPage = () => {
     { skill: DeleteProfileSkillInput }
   >(DELETE_PROFILE_SKILLS, {
     onCompleted: () => {
-      showSnackbar('Skill was removed', 'info');
+      showSnackbar(t('skills.info.skillRemoved'), 'info');
     },
     onError: (error) => {
-      const msg = extractGraphQLMessage(error) || 'fail';
+      const msg =
+        extractGraphQLMessage(error) || t('skills.error.requestFailed');
       showSnackbar(msg, 'error');
     },
   });
@@ -62,10 +66,11 @@ export const SkillsPage = () => {
     { skill: AddProfileSkillInput }
   >(ADD_PROFILE_SKILL, {
     onCompleted: () => {
-      showSnackbar('Skill was added', 'info');
+      showSnackbar(t('skills.info.skillAdded'), 'info');
     },
     onError: (error) => {
-      const msg = extractGraphQLMessage(error) || 'fail';
+      const msg =
+        extractGraphQLMessage(error) || t('skills.error.requestFailed');
       showSnackbar(msg, 'error');
     },
   });
@@ -75,10 +80,11 @@ export const SkillsPage = () => {
     { skill: UpdateProfileSkillInput }
   >(UPDATE_PROFILE_SKILL, {
     onCompleted: () => {
-      showSnackbar('Skill was updated', 'info');
+      showSnackbar(t('skills.info.skillUpdated'), 'info');
     },
     onError: (error) => {
-      const msg = extractGraphQLMessage(error) || 'fail';
+      const msg =
+        extractGraphQLMessage(error) || t('skills.error.requestFailed');
       showSnackbar(msg, 'error');
     },
   });
@@ -89,7 +95,7 @@ export const SkillsPage = () => {
   useEffect(() => {
     if (!error) return;
 
-    const msg = extractGraphQLMessage(error) || 'fail';
+    const msg = extractGraphQLMessage(error) || t('skills.error.requestFailed');
     showSnackbar(msg, 'error');
   }, [error]);
 

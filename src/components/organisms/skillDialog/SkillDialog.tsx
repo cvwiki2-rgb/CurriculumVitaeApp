@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client/react';
 import { DialogActions, DialogContent, MenuItem } from '@mui/material';
 import {
@@ -44,6 +45,8 @@ export const SkillDialog = ({
   onClose,
   onConfirm,
 }: SkillDialogProps) => {
+  const { t } = useTranslation();
+
   const [skill, setSkill] = useState<ParsedSkill | null>(null);
   const [mastery, setMastery] = useState<Mastery>('Novice' as Mastery);
 
@@ -99,7 +102,11 @@ export const SkillDialog = ({
       open={open}
       onClose={onClose}
       onSubmit={handleSubmit}
-      title={mode === 'add' ? 'Add skill' : 'Update skill'}
+      title={
+        mode === 'add'
+          ? t('skills.addSkillModalTitle')
+          : t('skills.updateSkillModalTitle')
+      }
     >
       <DialogContent>
         <GroupedSelect
@@ -108,13 +115,18 @@ export const SkillDialog = ({
           getOptionLabel={(option) => option?.label || ''}
           value={skill}
           onChange={setSkill}
-          label="Skill"
+          label={t('skills.skill')}
           disabled={mode === 'update'}
         />
-        <SelectInput disabled={!skill} value={mastery} onChange={setMastery}>
+        <SelectInput
+          disabled={!skill}
+          value={mastery}
+          onChange={setMastery}
+          label={t('skills.skillMastery')}
+        >
           {masteryOptions.map((option) => (
             <MenuItem value={option} key={option}>
-              {option}
+              {t(`skills.skillMasteries.${option}`)}
             </MenuItem>
           ))}
         </SelectInput>
@@ -131,7 +143,7 @@ export const SkillDialog = ({
         }}
       >
         <StyledButton onClick={onClose} variant="outlined">
-          Cancel
+          {t('skills.cancelBtn')}
         </StyledButton>
         <StyledButton
           type="submit"
@@ -139,7 +151,7 @@ export const SkillDialog = ({
           variant="contained"
           color="primary"
         >
-          Confirm
+          {t('skills.confirmBtn')}
         </StyledButton>
       </DialogActions>
     </BaseDialog>

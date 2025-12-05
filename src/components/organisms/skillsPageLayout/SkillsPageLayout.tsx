@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DeleteForever, Add as AddIcon } from '@mui/icons-material';
 import { Box, Container } from '@mui/material';
 import { groupSkillsByCategory } from '../../../utils/groupSkillsByCategory';
@@ -39,6 +40,8 @@ export const SkillsPageLayout = ({
   dialogOpen = false,
   onCloseDialog,
 }: SkillsPageLayoutProps) => {
+  const { t } = useTranslation();
+
   const [deleteMode, setDeleteMode] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [dialogMode, setDialogMode] = useState<'add' | 'update'>('add');
@@ -140,7 +143,7 @@ export const SkillsPageLayout = ({
                   setSelected(new Set());
                 }}
               >
-                Cancel
+                {t('skills.cancelBtn')}
               </StyledButton>
               <StyledButton
                 variant="contained"
@@ -152,7 +155,7 @@ export const SkillsPageLayout = ({
                   setDeleteMode(false);
                 }}
               >
-                Delete
+                {t('skills.removeBtn')}
                 {selected.size ? (
                   <Box
                     component="div"
@@ -182,7 +185,7 @@ export const SkillsPageLayout = ({
                 onClick={openAddDialog}
               >
                 <AddIcon />
-                Add skill
+                {t('skills.addSkillBtn')}
               </StyledButton>
               <StyledButton
                 variant="text"
@@ -190,7 +193,7 @@ export const SkillsPageLayout = ({
                 onClick={() => setDeleteMode(true)}
               >
                 <DeleteForever />
-                Remove skills
+                {t('skills.removeSkillsBtn')}
               </StyledButton>
             </>
           )}
