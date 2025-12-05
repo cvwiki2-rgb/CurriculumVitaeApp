@@ -79,11 +79,17 @@ export const SkillsPageLayout = ({
   return (
     <Container
       maxWidth="md"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '32px',
-        paddingTop: '32px',
+      sx={(theme) => {
+        return {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '32px',
+          paddingTop: '32px',
+          [theme.breakpoints.up('md')]: {
+            paddingLeft: '24px',
+            paddingRight: '24px',
+          },
+        };
       }}
     >
       {groupSkillsByCategory(categories, skills).map((list) => (

@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { Sidebar } from '../components/organisms/sidebar';
 
 export const AppLayout = () => {
@@ -20,7 +20,21 @@ export const AppLayout = () => {
         component="main"
         sx={{ width: '100%', gridArea: 'page', overflowY: 'scroll' }}
       >
-        <Outlet />
+        <Container
+          maxWidth="xl"
+          sx={(theme) => {
+            return {
+              paddingLeft: '16px',
+              paddingRight: '16px',
+              [theme.breakpoints.up('md')]: {
+                paddingLeft: '24px',
+                paddingRight: '24px',
+              },
+            };
+          }}
+        >
+          <Outlet />
+        </Container>
       </Box>
     </Box>
   );

@@ -120,7 +120,16 @@ export const SkillDialog = ({
         </SelectInput>
       </DialogContent>
 
-      <DialogActions>
+      <DialogActions
+        sx={(theme) => {
+          return {
+            [theme.breakpoints.down('sm')]: {
+              flexWrap: 'wrap',
+              gap: '10px',
+            },
+          };
+        }}
+      >
         <StyledButton onClick={onClose} variant="outlined">
           Cancel
         </StyledButton>

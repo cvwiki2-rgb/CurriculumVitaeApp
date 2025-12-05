@@ -14,7 +14,7 @@ export const lightPalette = {
     disabledBackground: 'rgba(0,0,0,0.12)',
   },
   mastery: lightMastery,
-  menu: { background: '#121212' },
+  menu: { background: '#ffffff' },
   skillItem: { action: { hover: 'rgba(118,118,118,0.08)' } },
 };
 
