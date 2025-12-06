@@ -26,7 +26,7 @@ export const GroupedSelect = <T,>({
       groupBy={groupBy}
       getOptionLabel={getOptionLabel}
       value={value}
-      onChange={(e, val) => onChange(val || null)}
+      onChange={(_e, val) => onChange(val || null)}
       disabled={disabled}
       renderInput={(params) => (
         <StyledInput {...params} label={label} margin="normal" />
