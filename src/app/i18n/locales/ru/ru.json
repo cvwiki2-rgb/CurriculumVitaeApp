@@ -28,5 +28,31 @@
       "btnPrimary": "Создать аккаунт",
       "btnSecondary": "У меня есть аккаунт"
     }
+  },
+  "skills": {
+    "addSkillBtn": "Добавить навык",
+    "removeSkillsBtn": "Удалить навыки",
+    "cancelBtn": "Отмена",
+    "removeBtn": "Удалить",
+    "confirmBtn": "Подтвердить",
+    "addSkillModalTitle": "Добавить навык",
+    "updateSkillModalTitle": "Обновить навык",
+    "skill": "Навык",
+    "skillMastery": "Уровень владения",
+    "skillMasteries": {
+      "Novice": "Новичок",
+      "Advanced": "Продвинутый",
+      "Competent": "Компетентный",
+      "Proficient": "Опытный",
+      "Expert": "Эксперт"
+    },
+    "info": {
+      "skillRemoved": "Навык удален",
+      "skillUpdated": "Навык обновлен",
+      "skillAdded": "Навык добавлен"
+    },
+    "error": {
+      "requestFailed": "Запрос завершился с ошибкой"
+    }
   }
 }
