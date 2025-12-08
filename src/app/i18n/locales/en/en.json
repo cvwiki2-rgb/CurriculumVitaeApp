@@ -57,6 +57,7 @@
       "settings": "Settings",
       "logout": "Logout"
     }
+  },
   "header": {
     "users": "Employees",
     "skills": "Skills",
