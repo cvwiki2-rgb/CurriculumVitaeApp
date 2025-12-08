@@ -34,7 +34,7 @@
       "btnPrimary": "Создать аккаунт",
       "btnSecondary": "У меня есть аккаунт"
     },
-     "forgotPassword": {
+    "forgotPassword": {
       "title": "Забыли пароль",
       "subtitle": "Мы отправим вам сообщение с дальнейшими инструкциями",
       "btnPrimary": "Сбросить пароль",
@@ -72,7 +72,7 @@
     "error": {
       "requestFailed": "Запрос завершился с ошибкой"
     }
-    },
+  },
   "sidebar": {
     "employees": "Сотрудники",
     "skills": "Навыки",
