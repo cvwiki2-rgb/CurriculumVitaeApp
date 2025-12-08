@@ -23,14 +23,14 @@ export const SidebarItem = ({ to, icon, label }: SidebarItemProps) => {
         borderBottomRightRadius: 200,
         textDecoration: 'none',
         overflow: 'hidden',
-        color: 'var(--sidebar-item-color)',
+        color: theme.palette.sidebar.item.color,
         transition: 'background 200ms, color 200ms',
         '&:hover': {
-          backgroundColor: 'var(--sidebar-item-active-bg)',
+          backgroundColor: theme.palette.sidebar.item.activeBackground,
         },
         '&.active': {
-          color: 'var(--sidebar-item-active-color)',
-          backgroundColor: 'var(--sidebar-item-active-bg)',
+          color: theme.palette.sidebar.item.activeColor,
+          backgroundColor: theme.palette.sidebar.item.activeBackground,
         },
         [theme.breakpoints.down(768)]: {
           justifyContent: 'center',

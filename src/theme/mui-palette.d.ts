@@ -11,6 +11,24 @@ declare module '@mui/material/styles' {
     };
     menu: { background: string };
     skillItem: { action: { hover: string } };
+    sidebar: {
+      item: {
+        color: stirng;
+        activeColor: string;
+        activeBackground: string;
+      };
+      user: {
+        text: string;
+        avatarBackground: string;
+        avatarColor: string;
+        hoverBackground: string;
+      };
+      collapseBtn: {
+        iconColor: string;
+        hoverBackground: string;
+      };
+    };
+    header: { segment: string };
   }
   interface PaletteOptions {
     mastery?: {
@@ -24,6 +42,24 @@ declare module '@mui/material/styles' {
       background?: string;
     };
     skillItem?: { action?: { hover?: string } };
+    sidebar?: {
+      item?: {
+        color?: stirng;
+        activeColor?: string;
+        activeBackground?: string;
+      };
+      user?: {
+        text?: string;
+        avatarBackground?: string;
+        avatarColor?: string;
+        hoverBackground?: string;
+      };
+      collapseBtn?: {
+        iconColor?: string;
+        hoverBackground?: string;
+      };
+    };
+    header?: { segment?: string };
   }
 }
 export {};

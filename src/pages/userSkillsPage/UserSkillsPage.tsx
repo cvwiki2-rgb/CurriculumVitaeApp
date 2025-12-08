@@ -9,7 +9,7 @@ export const UserSkillsPage = () => {
 
   if (!userId) return null;
 
-  const isEditable = auth?.user?.id === userId || auth?.user?.role === 'Admin';
+  const isEditable = auth?.user.id === userId || auth?.user.role === 'Admin';
 
   return <SkillsPageBase userId={userId} readOnly={!isEditable} />;
 };

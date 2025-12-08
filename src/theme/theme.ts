@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 import { baseTheme, muiCssBaseline } from './baseTheme';
-import { lightCssVars, darkCssVars } from './cssVars';
 import { lightPalette, darkPalette } from './palette';
 
 export const lightTheme = createTheme({
@@ -10,13 +9,11 @@ export const lightTheme = createTheme({
     ...lightPalette,
     mode: 'light',
   },
-
   components: {
     ...baseTheme.components,
     MuiCssBaseline: {
       styleOverrides: {
         ...muiCssBaseline,
-        ':root': lightCssVars,
       },
     },
   },
@@ -34,7 +31,6 @@ export const darkTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         ...muiCssBaseline,
-        ':root': darkCssVars,
       },
     },
   },

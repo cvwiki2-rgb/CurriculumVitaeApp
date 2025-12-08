@@ -96,7 +96,7 @@ export const Sidebar = () => {
           transition:
             'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
           '&:hover': {
-            backgroundColor: 'var(--sidebar-user-hover-bg) !important',
+            backgroundColor: `${theme.palette.sidebar.user.hoverBackground} !important`,
           },
           [theme.breakpoints.down(768)]: {
             borderRadius: '200px',
@@ -111,10 +111,12 @@ export const Sidebar = () => {
         })}
       >
         <Avatar
-          sx={{
-            backgroundColor: 'var(--sidebar-user-avatar-bg)',
-            color: 'var(--sidebar-user-avatar-color)',
-            textTransform: 'uppercase',
+          sx={(theme) => {
+            return {
+              backgroundColor: theme.palette.sidebar.user.avatarBackground,
+              color: theme.palette.sidebar.user.avatarColor,
+              textTransform: 'uppercase',
+            };
           }}
         >
           S
@@ -128,10 +130,11 @@ export const Sidebar = () => {
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
-            color: 'var(--sidebar-user-text)',
+            color: (theme) => theme.palette.sidebar.user.text,
+            textAlign: 'left',
           }}
         >
-          {auth?.user.profile.full_name || auth?.user?.email || 'unknown'}
+          {auth?.user.profile.full_name || auth?.user.email || 'unknown'}
         </Typography>
       </StyledButton>
 
@@ -139,14 +142,14 @@ export const Sidebar = () => {
 
       <IconButton
         sx={(theme) => ({
-          color: 'var(--sidebar-collapse-icon-color)',
+          color: theme.palette.sidebar.collapseBtn.iconColor,
           margin: '14px 0 0 8px',
           padding: 1,
           fontSize: '1.5rem',
           transition: 'background-color .15s cubic-bezier(0.4,0,0.2,1)',
           alignSelf: 'flex-start',
           '&:hover': {
-            backgroundColor: 'var(--sidebar-collapse-hover-bg)',
+            backgroundColor: theme.palette.sidebar.collapseBtn.hoverBackground,
           },
           [theme.breakpoints.down(768)]: {
             display: 'none',

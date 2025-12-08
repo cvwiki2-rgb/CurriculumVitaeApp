@@ -4,7 +4,7 @@ import { authVar } from '../../graphql/state/auth';
 
 export const SkillsPage = () => {
   const auth = useReactiveVar(authVar);
-  const userId = auth?.user?.id;
+  const userId = auth?.user.id;
 
   if (!userId) return null;
 

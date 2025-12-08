@@ -21,7 +21,6 @@ export const AppLayout = () => {
         component="main"
         sx={{ width: '100%', gridArea: 'page', overflowY: 'scroll' }}
       >
-        <Header />
         <Container
           maxWidth="xl"
           sx={(theme) => {
@@ -35,9 +34,9 @@ export const AppLayout = () => {
             };
           }}
         >
+          <Header />
           <Outlet />
         </Container>
-        <Outlet />
       </Box>
     </Box>
   );

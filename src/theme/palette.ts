@@ -1,4 +1,5 @@
 import { darkMastery, lightMastery } from './mastery';
+import { darkSidebar, lightSidebar } from './sidebar';
 
 export const primary = { main: '#c63031', contrastText: '#fff' };
 export const secondary = { main: '#767676', contrastText: '#fff' };
@@ -17,6 +18,8 @@ export const lightPalette = {
   menu: { background: '#ffffff' },
   skillItem: { action: { hover: 'rgba(118,118,118,0.08)' } },
   divider: 'rgba(0,0,0,0.12)',
+  sidebar: lightSidebar,
+  header: { segment: 'rgba(0, 0, 0, 0.6)' },
 };
 
 export const darkPalette = {
@@ -33,4 +36,6 @@ export const darkPalette = {
   menu: { background: '#121212' },
   skillItem: { action: { hover: 'rgba(118,118,118,0.08)' } },
   divider: 'rgba(255,255,255,0.12)',
+  sidebar: darkSidebar,
+  header: { segment: 'rgba(255, 255, 255, 0.7)' },
 };

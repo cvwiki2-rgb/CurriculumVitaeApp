@@ -1,5 +1,10 @@
 import { ApolloClient, makeVar } from '@apollo/client';
-import { type AuthResult, type UpdateTokenResult, type User } from 'cv-graphql';
+import {
+  type UserRole,
+  type AuthResult,
+  type UpdateTokenResult,
+  type User,
+} from 'cv-graphql';
 import { UPDATE_TOKEN } from '../auth/mutations';
 
 export const authVar = makeVar<AuthResult | null>(null);
@@ -10,7 +15,7 @@ const defaultUser: User = {
   email: '',
   is_verified: false,
   profile: { id: '', created_at: '', skills: [], languages: [] },
-  role: 'Employee' as unknown as User['role'],
+  role: 'Employee' as UserRole,
 };
 
 export function setAuth(auth: AuthResult) {

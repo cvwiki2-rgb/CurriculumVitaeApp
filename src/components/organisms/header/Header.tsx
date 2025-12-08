@@ -21,7 +21,7 @@ export const Header = () => {
     languages: t('header.languages'),
     cvs: t('header.cvs'),
     projects: t('header.projects'),
-    previews: t('header.previews'),
+    preview: t('header.preview'),
   };
 
   //   if (userId) labelMap[userId] = user?.name ?? `#${userId}`;
@@ -40,7 +40,11 @@ export const Header = () => {
         height: 44,
         paddingLeft: '20px',
         paddingTop: '16px',
-        color: 'var(--header-segment)',
+        color: (theme) => theme.palette.header.segment,
+        position: 'sticky',
+        top: 0,
+        zIndex: 3,
+        backgroundColor: (theme) => theme.palette.background.default,
         '& .MuiBreadcrumbs-li:last-child': {
           pointerEvents: 'none',
           opacity: 0.6,
