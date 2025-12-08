@@ -14,7 +14,18 @@ const httpLink = new HttpLink({
   uri: import.meta.env.VITE_GRAPHQL_URI,
 });
 
-const authLink = new SetContextLink((prevContext) => {
+const authLink = new SetContextLink((prevContext, { operationName }) => {
+  if (operationName === 'ResetPassword') {
+    const urlToken = new URLSearchParams(window.location.search).get('token');
+
+    return {
+      headers: {
+        ...prevContext.headers,
+        Authorization: urlToken ? `Bearer ${urlToken}` : '',
+      },
+    };
+  }
+
   const tokenData = authVar(); // AuthResult | null
   const token =
     tokenData?.access_token ?? localStorage.getItem('access_token') ?? '';
