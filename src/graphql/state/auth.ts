@@ -81,6 +81,7 @@ export async function refreshToken(
         headers: {
           Authorization: `Bearer ${refreshToken}`,
         },
+        useRefreshToken: true,
       },
     });
 

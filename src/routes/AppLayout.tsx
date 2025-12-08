@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router';
-import { Box, Switch } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { Header } from '../components/organisms/header';
 import { Sidebar } from '../components/organisms/sidebar';
-import { useAppTheme } from '../context/ThemeContext';
 
 export const AppLayout = () => {
-  const { toggleTheme, mode } = useAppTheme();
   return (
     <Box
       sx={{
@@ -24,7 +22,21 @@ export const AppLayout = () => {
         sx={{ width: '100%', gridArea: 'page', overflowY: 'scroll' }}
       >
         <Header />
-        <Switch checked={mode === 'dark'} onChange={toggleTheme} />
+        <Container
+          maxWidth="xl"
+          sx={(theme) => {
+            return {
+              paddingLeft: '16px',
+              paddingRight: '16px',
+              [theme.breakpoints.up('md')]: {
+                paddingLeft: '24px',
+                paddingRight: '24px',
+              },
+            };
+          }}
+        >
+          <Outlet />
+        </Container>
         <Outlet />
       </Box>
     </Box>

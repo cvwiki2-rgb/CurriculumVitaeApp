@@ -84,9 +84,10 @@ export const StyledInput = styled(TextField)<TextFieldProps>(({ theme }) => {
       borderColor: theme.palette.error.main,
     },
 
-    '& .Mui-disabled': {
-      backgroundColor: theme.palette.action.disabledBackground,
+    '&.Mui-disabled, & .Mui-disabled': {
+      backgroundColor: 'transparent',
       color: theme.palette.text.disabled,
+      pointerEvents: 'none',
     },
 
     '& .MuiFormHelperText-root': {

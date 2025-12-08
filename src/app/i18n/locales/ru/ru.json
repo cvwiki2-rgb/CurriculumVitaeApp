@@ -34,7 +34,7 @@
       "btnPrimary": "Создать аккаунт",
       "btnSecondary": "У меня есть аккаунт"
     },
-    "forgotPassword": {
+     "forgotPassword": {
       "title": "Забыли пароль",
       "subtitle": "Мы отправим вам сообщение с дальнейшими инструкциями",
       "btnPrimary": "Сбросить пароль",
@@ -47,6 +47,32 @@
       "btnSecondary": "Назад на страницу входа"
     }
   },
+  "skills": {
+    "addSkillBtn": "Добавить навык",
+    "removeSkillsBtn": "Удалить навыки",
+    "cancelBtn": "Отмена",
+    "removeBtn": "Удалить",
+    "confirmBtn": "Подтвердить",
+    "addSkillModalTitle": "Добавить навык",
+    "updateSkillModalTitle": "Обновить навык",
+    "skill": "Навык",
+    "skillMastery": "Уровень владения",
+    "skillMasteries": {
+      "Novice": "Новичок",
+      "Advanced": "Продвинутый",
+      "Competent": "Компетентный",
+      "Proficient": "Опытный",
+      "Expert": "Эксперт"
+    },
+    "info": {
+      "skillRemoved": "Навык удален",
+      "skillUpdated": "Навык обновлен",
+      "skillAdded": "Навык добавлен"
+    },
+    "error": {
+      "requestFailed": "Запрос завершился с ошибкой"
+    }
+    },
   "sidebar": {
     "employees": "Сотрудники",
     "skills": "Навыки",

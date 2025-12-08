@@ -47,6 +47,32 @@
       "btnSecondary": "Back to log in"
     }
   },
+  "skills": {
+    "addSkillBtn": "Add skill",
+    "removeSkillsBtn": "Remove skills",
+    "cancelBtn": "Cancel",
+    "removeBtn": "Remove",
+    "confirmBtn": "Confirm",
+    "addSkillModalTitle": "Add skill",
+    "updateSkillModalTitle": "Update skill",
+    "skill": "Skill",
+    "skillMastery": "Skill mastery",
+    "skillMasteries": {
+      "Novice": "Novice",
+      "Advanced": "Advanced",
+      "Competent": "Competent",
+      "Proficient": "Proficient",
+      "Expert": "Expert"
+    },
+    "info": {
+      "skillRemoved": "Skill was removed",
+      "skillUpdated": "Skill was updated",
+      "skillAdded": "Skill was added"
+    },
+    "error": {
+      "requestFailed": "The request failed with an error"
+    }
+  },
   "sidebar": {
     "employees": "Employees",
     "skills": "Skills",
