@@ -46,5 +46,13 @@
       "btnPrimary": "Подтвердить",
       "btnSecondary": "Назад на страницу входа"
     }
+  },
+  "header": {
+    "users": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cvs": "Резюме",
+    "projects": "Проекты",
+    "preview": "Просмотр"
   }
 }
