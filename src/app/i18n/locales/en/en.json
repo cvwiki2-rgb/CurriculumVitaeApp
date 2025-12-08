@@ -47,6 +47,17 @@
       "btnSecondary": "Back to log in"
     }
   },
+  "sidebar": {
+    "employees": "Employees",
+    "skills": "Skills",
+    "languages": "Languages",
+    "cvs": "CVs",
+    "menu": {
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    }
+  },
   "header": {
     "users": "Employees",
     "skills": "Skills",

@@ -47,6 +47,17 @@
       "btnSecondary": "Назад на страницу входа"
     }
   },
+  "sidebar": {
+    "employees": "Сотрудники",
+    "skills": "Навыки",
+    "languages": "Языки",
+    "cvs": "Резюме",
+    "menu": {
+      "profile": "Профиль",
+      "settings": "Настройки",
+      "logout": "Выйти"
+    }
+  },
   "header": {
     "users": "Сотрудники",
     "skills": "Навыки",
