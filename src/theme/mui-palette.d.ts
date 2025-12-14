@@ -29,6 +29,15 @@ declare module '@mui/material/styles' {
       };
     };
     header: { segment: string };
+    proficiency: {
+      A1: string;
+      A2: string;
+      B1: string;
+      B2: string;
+      C1: string;
+      C2: string;
+      Native: string;
+    };
   }
   interface PaletteOptions {
     mastery?: {
@@ -60,6 +69,15 @@ declare module '@mui/material/styles' {
       };
     };
     header?: { segment?: string };
+    proficiency?: {
+      A1: string;
+      A2: string;
+      B1: string;
+      B2: string;
+      C1: string;
+      C2: string;
+      Native: string;
+    };
   }
 }
 export {};

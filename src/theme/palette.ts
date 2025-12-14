@@ -20,6 +20,15 @@ export const lightPalette = {
   divider: 'rgba(0,0,0,0.12)',
   sidebar: lightSidebar,
   header: { segment: 'rgba(0, 0, 0, 0.6)' },
+  proficiency: {
+    A1: 'rgb(118, 118, 118)',
+    A2: 'rgb(118, 118, 118)',
+    B1: 'rgb(2, 136, 209)',
+    B2: 'rgb(46, 125, 50)',
+    C1: 'rgb(255, 184, 0)',
+    C2: 'rgb(255, 184, 0)',
+    Native: 'rgb(198, 48, 49)',
+  },
 };
 
 export const darkPalette = {
@@ -38,4 +47,13 @@ export const darkPalette = {
   divider: 'rgba(255,255,255,0.12)',
   sidebar: darkSidebar,
   header: { segment: 'rgba(255, 255, 255, 0.7)' },
+  proficiency: {
+    A1: 'rgb(118, 118, 118)',
+    A2: 'rgb(118, 118, 118)',
+    B1: 'rgb(41, 182, 246)',
+    B2: 'rgb(102, 187, 106)',
+    C1: 'rgb(255, 184, 0)',
+    C2: 'rgb(255, 184, 0)',
+    Native: 'rgb(198, 48, 49)',
+  },
 };
