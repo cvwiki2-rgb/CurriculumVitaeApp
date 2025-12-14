@@ -183,18 +183,21 @@ export const SkillsPageLayout = ({
                 variant="text"
                 color="secondary"
                 onClick={openAddDialog}
+                fullWidth={!skills.length || !categories.length}
               >
                 <AddIcon />
                 {t('skills.addSkillBtn')}
               </StyledButton>
-              <StyledButton
-                variant="text"
-                color="primary"
-                onClick={() => setDeleteMode(true)}
-              >
-                <DeleteForever />
-                {t('skills.removeSkillsBtn')}
-              </StyledButton>
+              {skills.length && categories.length ? (
+                <StyledButton
+                  variant="text"
+                  color="primary"
+                  onClick={() => setDeleteMode(true)}
+                >
+                  <DeleteForever />
+                  {t('skills.removeSkillsBtn')}
+                </StyledButton>
+              ) : null}
             </>
           )}
         </Box>
