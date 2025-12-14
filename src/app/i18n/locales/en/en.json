@@ -73,6 +73,25 @@
       "requestFailed": "The request failed with an error"
     }
   },
+  "languages": {
+    "addLanguageBtn": "Add language",
+    "removeLanguagesBtn": "Remove languages",
+    "cancelBtn": "Cancel",
+    "removeBtn": "Remove",
+    "confirmBtn": "Confirm",
+    "addLanguageModalTitle": "Add language",
+    "updateLanguageModalTitle": "Update language",
+    "language": "Language",
+    "languageProficiency": "Language proficiency",
+    "info": {
+      "languageRemoved": "Language was removed",
+      "languageUpdated": "Language was updated",
+      "languageAdded": "Language was added"
+    },
+    "error": {
+      "requestFailed": "The request failed with an error"
+    }
+  },
   "sidebar": {
     "employees": "Employees",
     "skills": "Skills",
