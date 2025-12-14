@@ -6,6 +6,7 @@ import { PublicRoutes } from './PublicRoutes';
 import { RootLayout } from './RootLayout';
 import { RootRedirect } from './RootRedirect';
 import { ForgotPasswordPage } from '../pages/forgotPasswordPage';
+import { LanguagesPage } from '../pages/languagesPage';
 import { LoginPage } from '../pages/loginPage';
 import { ResetPasswordPage } from '../pages/resetPasswordPage';
 import { SignupPage } from '../pages/signupPage';
@@ -53,6 +54,7 @@ export const router = createBrowserRouter([
                 ],
               },
               { path: '/skills', Component: SkillsPage },
+              { path: '/languages', Component: LanguagesPage },
             ],
           },
         ],

@@ -2,36 +2,25 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DeleteForever, Add as AddIcon } from '@mui/icons-material';
 import { Box, Container } from '@mui/material';
-import { groupSkillsByCategory } from '../../../utils/groupSkillsByCategory';
 import { StyledButton } from '../../atoms/styledButton';
-import { SkillItem } from '../../molecules/skillItem';
-import { SkillsList } from '../../molecules/skillsList';
-import { SkillDialog } from '../skillDialog';
-import type { Mastery, SkillCategory, SkillMastery } from 'cv-graphql';
+import { LangItem } from '../../molecules/langItem';
+import { LangsList } from '../../molecules/langsList';
+import { LangDialog } from '../langDialog';
+import type { LanguageProficiency, Proficiency } from 'cv-graphql';
 
-interface SkillsPageLayoutProps {
-  skills: SkillMastery[];
-  categories: SkillCategory[];
+interface LangsPageLayoutProps {
+  languages: LanguageProficiency[];
   readOnly?: boolean;
-  handleAdd?: (
-    skill: string,
-    mastery: Mastery,
-    categoryId?: null | string,
-  ) => void;
-  handleUpdate?: (
-    skill: string,
-    mastery: Mastery,
-    categoryId?: string | null,
-  ) => void;
-  handleDelete?: (skills: string[]) => void;
+  handleAdd?: (lang: string, proficiency: Proficiency) => void;
+  handleUpdate?: (lang: string, proficiency: Proficiency) => void;
+  handleDelete?: (langs: string[]) => void;
   dialogOpen?: boolean;
   onOpenDialog?: () => void;
   onCloseDialog?: () => void;
 }
 
-export const SkillsPageLayout = ({
-  skills,
-  categories,
+export const LangsPageLayout = ({
+  languages,
   readOnly,
   handleAdd,
   handleUpdate,
@@ -39,30 +28,28 @@ export const SkillsPageLayout = ({
   onOpenDialog,
   dialogOpen = false,
   onCloseDialog,
-}: SkillsPageLayoutProps) => {
+}: LangsPageLayoutProps) => {
   const { t } = useTranslation();
 
   const [deleteMode, setDeleteMode] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [dialogMode, setDialogMode] = useState<'add' | 'update'>('add');
-  const [initialSkill, setInitialSkill] = useState<{
+  const [initialLang, setInitialLang] = useState<{
     name: string;
-    mastery: Mastery;
-    categoryId: string | null;
+    proficiency: Proficiency;
   } | null>(null);
 
   const openAddDialog = () => {
     setDialogMode('add');
-    setInitialSkill(null);
+    setInitialLang(null);
     onOpenDialog?.();
   };
 
-  const openUpdateDialog = (skill: SkillMastery) => {
+  const openUpdateDialog = (lang: LanguageProficiency) => {
     setDialogMode('update');
-    setInitialSkill({
-      name: skill.name,
-      mastery: skill.mastery,
-      categoryId: skill.categoryId ?? null,
+    setInitialLang({
+      name: lang.name,
+      proficiency: lang.proficiency,
     });
     onOpenDialog?.();
   };
@@ -95,22 +82,21 @@ export const SkillsPageLayout = ({
         };
       }}
     >
-      {groupSkillsByCategory(categories, skills).map((list) => (
-        <SkillsList title={list.category.name} key={list.category.id}>
-          {list.skills.map((skill) => (
-            <SkillItem
-              mastery={skill.mastery}
-              label={skill.name}
-              readOnly={readOnly}
-              deleteMode={deleteMode}
-              selected={selected.has(skill.name)}
-              onToggleSelect={() => handleToggleSelect(skill.name)}
-              onClick={() => !readOnly && openUpdateDialog(skill)}
-              key={skill.name}
-            />
-          ))}
-        </SkillsList>
-      ))}
+      <LangsList>
+        {languages.map((language) => (
+          <LangItem
+            proficiency={language.proficiency}
+            label={language.name}
+            readOnly={readOnly}
+            deleteMode={deleteMode}
+            selected={selected.has(language.name)}
+            onToggleSelect={() => handleToggleSelect(language.name)}
+            onClick={() => !readOnly && openUpdateDialog(language)}
+            key={language.name}
+          />
+        ))}
+      </LangsList>
+
       {!readOnly && (
         <Box
           sx={{
@@ -143,7 +129,7 @@ export const SkillsPageLayout = ({
                   setSelected(new Set());
                 }}
               >
-                {t('skills.cancelBtn')}
+                {t('languages.cancelBtn')}
               </StyledButton>
               <StyledButton
                 variant="contained"
@@ -155,7 +141,7 @@ export const SkillsPageLayout = ({
                   setDeleteMode(false);
                 }}
               >
-                {t('skills.removeBtn')}
+                {t('languages.removeBtn')}
                 {selected.size ? (
                   <Box
                     component="div"
@@ -183,36 +169,36 @@ export const SkillsPageLayout = ({
                 variant="text"
                 color="secondary"
                 onClick={openAddDialog}
-                fullWidth={!skills.length || !categories.length}
+                fullWidth={!languages.length}
               >
                 <AddIcon />
-                {t('skills.addSkillBtn')}
+                {t('languages.addLanguageBtn')}
               </StyledButton>
-              {skills.length && categories.length ? (
+              {languages.length ? (
                 <StyledButton
                   variant="text"
                   color="primary"
                   onClick={() => setDeleteMode(true)}
                 >
                   <DeleteForever />
-                  {t('skills.removeSkillsBtn')}
+                  {t('languages.removeLanguagesBtn')}
                 </StyledButton>
               ) : null}
             </>
           )}
         </Box>
       )}
-      <SkillDialog
-        existingSkills={skills}
+      <LangDialog
+        existingLangs={languages}
         open={dialogOpen}
         mode={dialogMode}
-        initialSkill={initialSkill ?? undefined}
+        initialLang={initialLang ?? undefined}
         onClose={onCloseDialog}
-        onConfirm={(name, mastery, categoryId) => {
+        onConfirm={(name, proficiency) => {
           if (dialogMode === 'add') {
-            handleAdd?.(name, mastery, categoryId);
+            handleAdd?.(name, proficiency);
           } else {
-            handleUpdate?.(name, mastery, categoryId);
+            handleUpdate?.(name, proficiency);
           }
           onCloseDialog?.();
         }}

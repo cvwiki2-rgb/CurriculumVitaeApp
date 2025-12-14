@@ -73,6 +73,25 @@
       "requestFailed": "Запрос завершился с ошибкой"
     }
   },
+  "languages": {
+    "addLanguageBtn": "Добавить язык",
+    "removeLanguagesBtn": "Удалить язык",
+    "cancelBtn": "Отмена",
+    "removeBtn": "Удалить",
+    "confirmBtn": "Подтвердить",
+    "addLanguageModalTitle": "Добавить язык",
+    "updateLanguageModalTitle": "Обновить язык",
+    "language": "Язык",
+    "languageProficiency": "Владение языком",
+    "info": {
+      "languageRemoved": "Язык удален",
+      "languageUpdated": "Язык обновлен",
+      "languageAdded": "Язык добавлен"
+    },
+    "error": {
+      "requestFailed": "Запрос завершился с ошибкой"
+    }
+  },
   "sidebar": {
     "employees": "Сотрудники",
     "skills": "Навыки",
