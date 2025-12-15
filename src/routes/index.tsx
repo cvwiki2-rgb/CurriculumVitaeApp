@@ -5,6 +5,7 @@ import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 import { RootLayout } from './RootLayout';
 import { RootRedirect } from './RootRedirect';
+import { UserIdLayout } from './UserIdLayout';
 import { ForgotPasswordPage } from '../pages/forgotPasswordPage';
 import { LanguagesPage } from '../pages/languagesPage';
 import { LoginPage } from '../pages/loginPage';
@@ -48,11 +49,13 @@ export const router = createBrowserRouter([
               {
                 path: '/users',
                 Component: UsersPage,
+              },
+              {
+                path: '/users/:userId',
+                Component: UserIdLayout,
                 children: [
-                  {
-                    path: ':userId',
-                    children: [{ path: 'skills', Component: UserSkillsPage }],
-                  },
+                  { index: true },
+                  { path: 'skills', Component: UserSkillsPage },
                 ],
               },
               { path: '/skills', Component: SkillsPage },
