@@ -9,6 +9,7 @@ import { UserIdLayout } from './UserIdLayout';
 import { ForgotPasswordPage } from '../pages/forgotPasswordPage';
 import { LanguagesPage } from '../pages/languagesPage';
 import { LoginPage } from '../pages/loginPage';
+import { ProfilePage } from '../pages/profilePage';
 import { ResetPasswordPage } from '../pages/resetPasswordPage';
 import { SignupPage } from '../pages/signupPage';
 import { SkillsPage } from '../pages/skillsPage';
@@ -55,7 +56,7 @@ export const router = createBrowserRouter([
                 path: '/users/:userId',
                 Component: UserIdLayout,
                 children: [
-                  { index: true },
+                  { index: true, Component: ProfilePage },
                   { path: 'skills', Component: UserSkillsPage },
                   { path: 'languages', Component: UserLanguagesPage },
                 ],
