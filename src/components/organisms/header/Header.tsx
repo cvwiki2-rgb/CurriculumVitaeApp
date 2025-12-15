@@ -3,7 +3,7 @@ import { useLocation, NavLink, useParams } from 'react-router';
 import { useReactiveVar } from '@apollo/client/react';
 import { NavigateNext, PersonOutlineOutlined } from '@mui/icons-material';
 import { Breadcrumbs, Typography, Link } from '@mui/material';
-import { usersVar } from '../../../graphql/state/users';
+import { userVar } from '../../../graphql/state/user';
 
 export type LabelMap = Record<string, string>;
 
@@ -12,8 +12,7 @@ export const Header = () => {
   const { userId, projectId } = useParams();
   const { t } = useTranslation();
 
-  const users = useReactiveVar(usersVar);
-  const user = users.find((user) => user.id === userId);
+  const user = useReactiveVar(userVar);
   //   const project = useReactiveVar(projectVar);
 
   const pathnames = location.pathname.split('/').filter(Boolean);
@@ -76,7 +75,9 @@ export const Header = () => {
             }}
           >
             {isId && <PersonOutlineOutlined sx={{ mr: 0.5 }} />}
-            <Typography sx={{ m: 0 }}>{label}</Typography>
+            <Typography sx={{ m: 0 }}>
+              {isId ? (user?.id !== userId ? '' : label) : label}
+            </Typography>
           </Link>
         );
       })}
