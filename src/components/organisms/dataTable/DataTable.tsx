@@ -26,7 +26,7 @@ interface DataTableProps<T> {
   currentUserId?: string;
 }
 
-export const DataTable = <T extends Record<string, string>>({
+export const DataTable = <T extends Record<string, string | null | undefined>>({
   columns,
   rows,
   getRowId,
@@ -172,8 +172,8 @@ export const DataTable = <T extends Record<string, string>>({
               .includes(search.toLowerCase()) && (
               <TableRow key={getRowId(pinnedRow)}>
                 <TableCell>
-                  <Avatar src={pinnedRow.avatar}>
-                    {pinnedRow.fullName[0]}
+                  <Avatar src={pinnedRow.avatar ?? undefined}>
+                    {pinnedRow.fullName?.[0] ?? ''}
                   </Avatar>
                 </TableCell>
                 <TableCell>{pinnedRow.firstName}</TableCell>
@@ -195,7 +195,9 @@ export const DataTable = <T extends Record<string, string>>({
           {sortedRows.map((row) => (
             <TableRow key={getRowId(row)}>
               <TableCell>
-                <Avatar src={row.avatar}>{row.fullName[0]}</Avatar>
+                <Avatar src={row.avatar ?? undefined}>
+                  {row.fullName?.[0]}
+                </Avatar>
               </TableCell>
               <TableCell>{row.firstName}</TableCell>
               <TableCell>{row.lastName}</TableCell>
