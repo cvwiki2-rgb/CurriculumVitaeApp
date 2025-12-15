@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useLocation, NavLink, useParams } from 'react-router';
+import { useReactiveVar } from '@apollo/client/react';
 import { NavigateNext, PersonOutlineOutlined } from '@mui/icons-material';
 import { Breadcrumbs, Typography, Link } from '@mui/material';
+import { usersVar } from '../../../graphql/state/users';
 
 export type LabelMap = Record<string, string>;
 
@@ -10,7 +12,8 @@ export const Header = () => {
   const { userId, projectId } = useParams();
   const { t } = useTranslation();
 
-  //   const user = useReactiveVar(userVar);
+  const users = useReactiveVar(usersVar);
+  const user = users.find((user) => user.id === userId);
   //   const project = useReactiveVar(projectVar);
 
   const pathnames = location.pathname.split('/').filter(Boolean);
@@ -24,7 +27,8 @@ export const Header = () => {
     preview: t('header.preview'),
   };
 
-  //   if (userId) labelMap[userId] = user?.name ?? `#${userId}`;
+  if (userId)
+    labelMap[userId] = user?.profile.full_name ?? user?.email ?? `#${userId}`;
   //   if (projectId) labelMap[projectId] = project?.title ?? `#${projectId}`;
 
   const resolveLabel = (segment: string) => labelMap[segment] ?? segment;
