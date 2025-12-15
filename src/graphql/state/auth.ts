@@ -45,6 +45,20 @@ export function updateAuth(auth: UpdateTokenResult) {
   authVar(updatedAuth);
 }
 
+export function updateUser(user: User) {
+  try {
+    localStorage.setItem('user', JSON.stringify(user));
+  } catch (e) {
+    console.warn('Failed to access localStorage', e);
+  }
+  const currentAuth = authVar();
+  if (!currentAuth) {
+    return;
+  }
+  const updatedAuth = { ...currentAuth, user };
+  authVar(updatedAuth);
+}
+
 export function clearAuth() {
   try {
     localStorage.removeItem('access_token');

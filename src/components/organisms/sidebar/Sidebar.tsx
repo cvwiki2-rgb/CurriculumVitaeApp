@@ -118,8 +118,9 @@ export const Sidebar = () => {
               textTransform: 'uppercase',
             };
           }}
+          src={auth?.user.profile.avatar ?? undefined}
         >
-          S
+          {auth?.user.profile.full_name?.[0] ?? auth?.user.email[0]}
         </Avatar>
 
         <Typography

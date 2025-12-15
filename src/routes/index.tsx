@@ -5,12 +5,15 @@ import { PrivateRoutes } from './PrivateRoutes';
 import { PublicRoutes } from './PublicRoutes';
 import { RootLayout } from './RootLayout';
 import { RootRedirect } from './RootRedirect';
+import { UserIdLayout } from './UserIdLayout';
 import { ForgotPasswordPage } from '../pages/forgotPasswordPage';
 import { LanguagesPage } from '../pages/languagesPage';
 import { LoginPage } from '../pages/loginPage';
+import { ProfilePage } from '../pages/profilePage';
 import { ResetPasswordPage } from '../pages/resetPasswordPage';
 import { SignupPage } from '../pages/signupPage';
 import { SkillsPage } from '../pages/skillsPage';
+import { UserLanguagesPage } from '../pages/userLanguagesPage';
 import { UserSkillsPage } from '../pages/userSkillsPage';
 import { UsersPage } from '../pages/usersPage';
 
@@ -48,11 +51,14 @@ export const router = createBrowserRouter([
               {
                 path: '/users',
                 Component: UsersPage,
+              },
+              {
+                path: '/users/:userId',
+                Component: UserIdLayout,
                 children: [
-                  {
-                    path: ':userId',
-                    children: [{ path: 'skills', Component: UserSkillsPage }],
-                  },
+                  { index: true, Component: ProfilePage },
+                  { path: 'skills', Component: UserSkillsPage },
+                  { path: 'languages', Component: UserLanguagesPage },
                 ],
               },
               { path: '/skills', Component: SkillsPage },
