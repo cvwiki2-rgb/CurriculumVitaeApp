@@ -53,37 +53,35 @@ export const ProfilePageBase = ({ userId, readOnly }: ProfilePageBaseProps) => {
   const [execUpdateProfile] = useMutation<
     { updateProfile: Profile },
     { profile: UpdateProfileInput }
-  >(UPDATE_PROFILE, {
-    onCompleted: () => showSnackbar(t('profile updated'), 'info'),
-    onError: (e) =>
-      showSnackbar(extractGraphQLMessage(e) || t('error'), 'error'),
-  });
+  >(UPDATE_PROFILE);
 
   const [execUpdateUser] = useMutation<
     { updateUser: User },
     { user: UpdateUserInput }
-  >(UPDATE_USER, {
-    onCompleted: () => showSnackbar(t('user updated'), 'info'),
-    onError: (e) =>
-      showSnackbar(extractGraphQLMessage(e) || t('error'), 'error'),
-  });
+  >(UPDATE_USER);
 
   const [execUploadAvatar] = useMutation<
     { uploadAvatar: string },
     { avatar: UploadAvatarInput }
   >(UPLOAD_AVATAR, {
-    onCompleted: () => showSnackbar(t('avatar uploaded'), 'info'),
+    onCompleted: () => showSnackbar(t('userId.info.imageUploaded'), 'info'),
     onError: (e) =>
-      showSnackbar(extractGraphQLMessage(e) || t('error'), 'error'),
+      showSnackbar(
+        extractGraphQLMessage(e) || t('userId.error.requestFailed'),
+        'error',
+      ),
   });
 
   const [execDeleteAvatar] = useMutation<
     { deleteAvatar: void },
     { avatar: DeleteAvatarInput }
   >(DELETE_AVATAR, {
-    onCompleted: () => showSnackbar(t('avatar deleted'), 'info'),
+    onCompleted: () => showSnackbar(t('userId.info.imageDeleted'), 'info'),
     onError: (e) =>
-      showSnackbar(extractGraphQLMessage(e) || t('error'), 'error'),
+      showSnackbar(
+        extractGraphQLMessage(e) || t('userId.error.requestFailed'),
+        'error',
+      ),
   });
 
   const isSameUser = data?.user?.id === userId;
@@ -102,7 +100,7 @@ export const ProfilePageBase = ({ userId, readOnly }: ProfilePageBaseProps) => {
   useEffect(() => {
     if (!error) return;
 
-    const msg = extractGraphQLMessage(error) || 'Error';
+    const msg = extractGraphQLMessage(error) || t('userId.error.requestFailed');
     showSnackbar(msg, 'error');
   }, [error]);
 
@@ -112,28 +110,33 @@ export const ProfilePageBase = ({ userId, readOnly }: ProfilePageBaseProps) => {
     department: string,
     position: string,
   ) => {
-    await Promise.all([
-      execUpdateProfile({
-        variables: {
-          profile: {
-            userId,
-            first_name: firstName,
-            last_name: lastName,
+    try {
+      await Promise.all([
+        execUpdateProfile({
+          variables: {
+            profile: {
+              userId,
+              first_name: firstName,
+              last_name: lastName,
+            },
           },
-        },
-      }),
-      execUpdateUser({
-        variables: {
-          user: {
-            userId,
-            departmentId: department,
-            positionId: position,
+        }),
+        execUpdateUser({
+          variables: {
+            user: {
+              userId,
+              departmentId: department,
+              positionId: position,
+            },
           },
-        },
-      }),
-    ]);
-
-    refetchUser();
+        }),
+      ]);
+      showSnackbar(t('userId.info.userUpdated'), 'info');
+      refetchUser();
+    } catch (e) {
+      console.error('Request error: ', e);
+      showSnackbar(t('userId.error.requestFailed'), 'error');
+    }
   };
 
   const handleAvatarUpload = async (file: File) => {

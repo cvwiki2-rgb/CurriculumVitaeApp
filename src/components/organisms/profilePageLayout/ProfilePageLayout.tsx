@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Close, FileUploadOutlined } from '@mui/icons-material';
 import {
   Avatar,
@@ -38,6 +39,8 @@ export const ProfilePageLayout = ({
   onAvatarUpload,
   onAvatarDelete,
 }: ProfilePageLayoutProps) => {
+  const { t } = useTranslation();
+
   const [firstName, setFirstName] = useState<string>(
     user?.profile.first_name ?? '',
   );
@@ -146,10 +149,10 @@ export const ProfilePageLayout = ({
                 fontSize="large"
                 sx={{ marginRight: '16px' }}
               />
-              Загрузите изображение аватара
+              {t('userId.profile.uploadImage')}
             </Typography>
             <Typography variant="subtitle1" sx={{ opacity: 0.6 }}>
-              png, jpg или gif, не больше 0.5МБ
+              {t('userId.profile.uploadImageInfo')}
             </Typography>
             <input
               type="file"
@@ -179,7 +182,7 @@ export const ProfilePageLayout = ({
         >
           {user?.email}
         </Typography>
-        <Typography variant="body1">{`Account was created ${user?.created_at ? new Date(Number(user.created_at)).toDateString() : 'unknown'}`}</Typography>
+        <Typography variant="body1">{`${t('userId.profile.accountCreated')} ${user?.created_at ? new Date(Number(user.created_at)).toDateString() : 'unknown'}`}</Typography>
       </Box>
       <Box
         component="form"
@@ -193,16 +196,16 @@ export const ProfilePageLayout = ({
       >
         <StyledInput
           value={firstName}
-          label="Name"
+          label={t('userId.profile.firstName')}
           onChange={(e) => setFirstName(e.target.value)}
         />
         <StyledInput
           value={lastName}
-          label="Surname"
+          label={t('userId.profile.lastName')}
           onChange={(e) => setLastName(e.target.value)}
         />
         <SelectInput
-          label="Department"
+          label={t('userId.profile.department')}
           value={department}
           onChange={setDepartment}
         >
@@ -210,7 +213,11 @@ export const ProfilePageLayout = ({
             <MenuItem value={department.id}>{department.name}</MenuItem>
           ))}
         </SelectInput>
-        <SelectInput label="Position" value={position} onChange={setPosition}>
+        <SelectInput
+          label={t('userId.profile.position')}
+          value={position}
+          onChange={setPosition}
+        >
           {positions.map((position) => (
             <MenuItem value={position.id}>{position.name}</MenuItem>
           ))}
@@ -229,7 +236,7 @@ export const ProfilePageLayout = ({
               };
             }}
           >
-            Update
+            {t('userId.profile.updateBtn')}
           </StyledButton>
         )}
       </Box>

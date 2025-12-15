@@ -123,6 +123,24 @@
       "profile": "Profile",
       "skills": "Skills",
       "languages": "Languages"
+    },
+    "profile": {
+      "uploadImage": "Upload avatar image",
+      "uploadImageInfo": "png, jpg or gif no more than 0.5MB",
+      "accountCreated": "A member since",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "department": "Department",
+      "position": "Position",
+      "updateBtn": "Update"
+    },
+    "info": {
+      "imageUploaded": "Image was uploaded",
+      "imageDeleted": "Image was deleted",
+      "userUpdated": "User was updated"
+    },
+    "error": {
+      "requestFailed": "The request failed with an error"
     }
   }
 }

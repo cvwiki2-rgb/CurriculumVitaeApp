@@ -123,6 +123,24 @@
       "profile": "Профиль",
       "skills": "Навыки",
       "languages": "Языки"
+    },
+    "profile": {
+      "uploadImage": "Загрузите изображение аватара",
+      "uploadImageInfo": "png, jpg or gif не больше 0.5МБ",
+      "accountCreated": "Аккаунт был создан",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "department": "Отдел",
+      "position": "Должность",
+      "updateBtn": "Обновить"
+    },
+    "info": {
+      "imageUploaded": "Изображение загружено",
+      "imageDeleted": "Изображение удалено",
+      "userUpdated": "Данные пользователя обновлены"
+    },
+    "error": {
+      "requestFailed": "Запрос завершился с ошибкой"
     }
   }
 }
