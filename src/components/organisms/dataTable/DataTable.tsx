@@ -141,7 +141,27 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
               </TableCell>
             )}
           </TableRow>
-          <TableRow>
+          <TableRow
+            sx={(theme) => {
+              return {
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiTableCell-root:nth-of-type(3)': {
+                    display: 'none',
+                  },
+                },
+                [theme.breakpoints.down('lg')]: {
+                  '& .MuiTableCell-root:nth-of-type(4)': {
+                    display: 'none',
+                  },
+                },
+                [theme.breakpoints.down('sm')]: {
+                  '& .MuiTableCell-root:nth-of-type(6)': {
+                    display: 'none',
+                  },
+                },
+              };
+            }}
+          >
             <TableCell />
             {columns.map((column) =>
               column.label ? (
@@ -170,7 +190,28 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
             String(pinnedRow.fullName)
               .toLowerCase()
               .includes(search.toLowerCase()) && (
-              <TableRow key={getRowId(pinnedRow)}>
+              <TableRow
+                key={getRowId(pinnedRow)}
+                sx={(theme) => {
+                  return {
+                    [theme.breakpoints.down('md')]: {
+                      '& .MuiTableCell-root:nth-of-type(3)': {
+                        display: 'none',
+                      },
+                    },
+                    [theme.breakpoints.down('lg')]: {
+                      '& .MuiTableCell-root:nth-of-type(4)': {
+                        display: 'none',
+                      },
+                    },
+                    [theme.breakpoints.down('sm')]: {
+                      '& .MuiTableCell-root:nth-of-type(6)': {
+                        display: 'none',
+                      },
+                    },
+                  };
+                }}
+              >
                 <TableCell>
                   <Avatar src={pinnedRow.avatar ?? undefined}>
                     {pinnedRow.fullName?.[0] ?? ''}
@@ -193,7 +234,28 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
               </TableRow>
             )}
           {sortedRows.map((row) => (
-            <TableRow key={getRowId(row)}>
+            <TableRow
+              key={getRowId(row)}
+              sx={(theme) => {
+                return {
+                  [theme.breakpoints.down('md')]: {
+                    '& .MuiTableCell-root:nth-of-type(3)': {
+                      display: 'none',
+                    },
+                  },
+                  [theme.breakpoints.down('lg')]: {
+                    '& .MuiTableCell-root:nth-of-type(4)': {
+                      display: 'none',
+                    },
+                  },
+                  [theme.breakpoints.down('sm')]: {
+                    '& .MuiTableCell-root:nth-of-type(6)': {
+                      display: 'none',
+                    },
+                  },
+                };
+              }}
+            >
               <TableCell>
                 <Avatar src={row.avatar ?? undefined}>
                   {row.fullName?.[0]}
