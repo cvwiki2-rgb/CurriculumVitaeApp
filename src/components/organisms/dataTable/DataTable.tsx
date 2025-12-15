@@ -107,8 +107,25 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
     >
       <Table
         stickyHeader
-        sx={{
-          paddingBottom: '16px',
+        sx={(theme) => {
+          return {
+            paddingBottom: '16px',
+            [theme.breakpoints.down('md')]: {
+              '& .MuiTableRow-root .MuiTableCell-root:nth-of-type(3)': {
+                display: 'none',
+              },
+            },
+            [theme.breakpoints.down('lg')]: {
+              '& .MuiTableRow-root .MuiTableCell-root:nth-of-type(4)': {
+                display: 'none',
+              },
+            },
+            [theme.breakpoints.down('sm')]: {
+              '& .MuiTableRow-root .MuiTableCell-root:nth-of-type(6)': {
+                display: 'none',
+              },
+            },
+          };
         }}
       >
         <TableHead
@@ -141,27 +158,7 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
               </TableCell>
             )}
           </TableRow>
-          <TableRow
-            sx={(theme) => {
-              return {
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiTableCell-root:nth-of-type(3)': {
-                    display: 'none',
-                  },
-                },
-                [theme.breakpoints.down('lg')]: {
-                  '& .MuiTableCell-root:nth-of-type(4)': {
-                    display: 'none',
-                  },
-                },
-                [theme.breakpoints.down('sm')]: {
-                  '& .MuiTableCell-root:nth-of-type(6)': {
-                    display: 'none',
-                  },
-                },
-              };
-            }}
-          >
+          <TableRow>
             <TableCell />
             {columns.map((column) =>
               column.label ? (
@@ -190,28 +187,7 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
             String(pinnedRow.fullName)
               .toLowerCase()
               .includes(search.toLowerCase()) && (
-              <TableRow
-                key={getRowId(pinnedRow)}
-                sx={(theme) => {
-                  return {
-                    [theme.breakpoints.down('md')]: {
-                      '& .MuiTableCell-root:nth-of-type(3)': {
-                        display: 'none',
-                      },
-                    },
-                    [theme.breakpoints.down('lg')]: {
-                      '& .MuiTableCell-root:nth-of-type(4)': {
-                        display: 'none',
-                      },
-                    },
-                    [theme.breakpoints.down('sm')]: {
-                      '& .MuiTableCell-root:nth-of-type(6)': {
-                        display: 'none',
-                      },
-                    },
-                  };
-                }}
-              >
+              <TableRow key={getRowId(pinnedRow)}>
                 <TableCell>
                   <Avatar src={pinnedRow.avatar ?? undefined}>
                     {pinnedRow.fullName?.[0] ?? ''}
@@ -234,28 +210,7 @@ export const DataTable = <T extends Record<string, string | null | undefined>>({
               </TableRow>
             )}
           {sortedRows.map((row) => (
-            <TableRow
-              key={getRowId(row)}
-              sx={(theme) => {
-                return {
-                  [theme.breakpoints.down('md')]: {
-                    '& .MuiTableCell-root:nth-of-type(3)': {
-                      display: 'none',
-                    },
-                  },
-                  [theme.breakpoints.down('lg')]: {
-                    '& .MuiTableCell-root:nth-of-type(4)': {
-                      display: 'none',
-                    },
-                  },
-                  [theme.breakpoints.down('sm')]: {
-                    '& .MuiTableCell-root:nth-of-type(6)': {
-                      display: 'none',
-                    },
-                  },
-                };
-              }}
-            >
+            <TableRow key={getRowId(row)}>
               <TableCell>
                 <Avatar src={row.avatar ?? undefined}>
                   {row.fullName?.[0]}
