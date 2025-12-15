@@ -6,7 +6,6 @@ import { showSnackbar } from '../../app/state/snackbar';
 import { DataTable } from '../../components/organisms/dataTable';
 import { extractGraphQLMessage } from '../../graphql/errors';
 import { authVar } from '../../graphql/state/auth';
-import { usersVar } from '../../graphql/state/users';
 import { USERS } from '../../graphql/users/queries';
 import type { UserTableRow } from './types';
 import type { Column } from '../../components/organisms/dataTable/types';
@@ -33,8 +32,6 @@ export const UsersPage = () => {
     if (!data.users) {
       showSnackbar('Error', 'error');
     }
-
-    usersVar(data.users);
   }, [data]);
 
   useEffect(() => {
