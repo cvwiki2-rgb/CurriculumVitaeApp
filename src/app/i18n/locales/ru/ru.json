@@ -110,5 +110,12 @@
     "cvs": "Резюме",
     "projects": "Проекты",
     "preview": "Просмотр"
+  },
+  "usersTable": {
+    "firstName": "Имя",
+    "lastName": "Фамилия",
+    "email": "Почта",
+    "department": "Отдел",
+    "position": "Должность"
   }
 }
