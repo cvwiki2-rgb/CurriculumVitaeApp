@@ -117,5 +117,12 @@
     "email": "Почта",
     "department": "Отдел",
     "position": "Должность"
+  },
+  "userId": {
+    "tabs": {
+      "profile": "Профиль",
+      "skills": "Навыки",
+      "languages": "Языки"
+    }
   }
 }

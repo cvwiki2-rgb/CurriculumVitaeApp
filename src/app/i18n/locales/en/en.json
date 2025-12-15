@@ -117,5 +117,12 @@
     "email": "Email",
     "department": "Department",
     "position": "Position"
+  },
+  "userId": {
+    "tabs": {
+      "profile": "Profile",
+      "skills": "Skills",
+      "languages": "Languages"
+    }
   }
 }
