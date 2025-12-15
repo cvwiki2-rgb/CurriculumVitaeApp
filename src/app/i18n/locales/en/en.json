@@ -110,5 +110,12 @@
     "cvs": "CVs",
     "projects": "Projects",
     "preview": "Preview"
+  },
+  "usersTable": {
+    "firstName": "Name",
+    "lastName": "Surname",
+    "email": "Email",
+    "department": "Department",
+    "position": "Position"
   }
 }
