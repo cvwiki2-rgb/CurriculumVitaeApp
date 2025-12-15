@@ -91,11 +91,17 @@ export const ProfilePageLayout = ({
       }}
     >
       <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          margin: '32px 0',
+        sx={(theme) => {
+          return {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '32px 0',
+            [theme.breakpoints.down('sm')]: {
+              flexDirection: 'column',
+              rowGap: '16px',
+            },
+          };
         }}
       >
         <Badge
@@ -132,13 +138,22 @@ export const ProfilePageLayout = ({
           </Avatar>
         </Badge>
         {!readOnly && (
-          <label
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              cursor: 'pointer',
-              marginLeft: '64px',
+          <Box
+            component="label"
+            sx={(theme) => {
+              return {
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                cursor: 'pointer',
+                marginLeft: '64px',
+                [theme.breakpoints.down('md')]: {
+                  marginLeft: '32px',
+                },
+                [theme.breakpoints.down('sm')]: {
+                  marginLeft: 0,
+                },
+              };
             }}
           >
             <Typography
@@ -161,7 +176,7 @@ export const ProfilePageLayout = ({
               hidden
               onChange={handleFileChange}
             />
-          </label>
+          </Box>
         )}
       </Box>
       <Box
@@ -187,11 +202,16 @@ export const ProfilePageLayout = ({
       <Box
         component="form"
         onSubmit={(e) => e.preventDefault()}
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '16px 32px',
-          pointerEvents: readOnly ? 'none' : 'all',
+        sx={(theme) => {
+          return {
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '16px 32px',
+            pointerEvents: readOnly ? 'none' : 'all',
+            [theme.breakpoints.down('md')]: {
+              gridTemplateColumns: '1fr',
+            },
+          };
         }}
       >
         <StyledInput

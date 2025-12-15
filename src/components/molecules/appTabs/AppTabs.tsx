@@ -36,7 +36,13 @@ export const AppTabs = ({ tabs, ...rest }: AppTabsProps) => {
   }, [location.pathname, tabs]);
 
   return (
-    <StyledTabs value={value} {...rest}>
+    <StyledTabs
+      value={value}
+      variant="scrollable"
+      scrollButtons="auto"
+      allowScrollButtonsMobile
+      {...rest}
+    >
       {tabs.map((tab) => (
         <LinkTab {...tab} key={tab.label} />
       ))}
