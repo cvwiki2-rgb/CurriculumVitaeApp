@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/loginPage';
 import { ResetPasswordPage } from '../pages/resetPasswordPage';
 import { SignupPage } from '../pages/signupPage';
 import { SkillsPage } from '../pages/skillsPage';
+import { UserLanguagesPage } from '../pages/userLanguagesPage';
 import { UserSkillsPage } from '../pages/userSkillsPage';
 import { UsersPage } from '../pages/usersPage';
 
@@ -56,6 +57,7 @@ export const router = createBrowserRouter([
                 children: [
                   { index: true },
                   { path: 'skills', Component: UserSkillsPage },
+                  { path: 'languages', Component: UserLanguagesPage },
                 ],
               },
               { path: '/skills', Component: SkillsPage },

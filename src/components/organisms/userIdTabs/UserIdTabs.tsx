@@ -7,10 +7,16 @@ export const UserIdTabs = () => {
   return (
     <AppTabs
       tabs={[
-        { label: t('Profile'), to: '.' },
-        { label: t('Skills'), to: 'skills' },
-        { label: t('Languages'), to: 'languages' },
+        { label: t('userId.tabs.profile'), to: '.' },
+        { label: t('userId.tabs.skills'), to: 'skills' },
+        { label: t('userId.tabs.languages'), to: 'languages' },
       ]}
+      sx={{
+        position: 'sticky',
+        top: '44px',
+        backgroundColor: 'background.default',
+        zIndex: 'appBar',
+      }}
     />
   );
 };
