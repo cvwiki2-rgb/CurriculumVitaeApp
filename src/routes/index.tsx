@@ -12,6 +12,7 @@ import { ResetPasswordPage } from '../pages/resetPasswordPage';
 import { SignupPage } from '../pages/signupPage';
 import { SkillsPage } from '../pages/skillsPage';
 import { UserSkillsPage } from '../pages/userSkillsPage';
+import { UsersPage } from '../pages/usersPage';
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
             children: [
               {
                 path: '/users',
+                Component: UsersPage,
                 children: [
                   {
                     path: ':userId',
